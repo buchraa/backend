@@ -22,10 +22,18 @@ public class Categorie {
     @JoinColumn(name = "Ref_mod", referencedColumnName="Ref_mod", nullable = true, foreignKey = @ForeignKey(name="FK_CATEGORY_MODULE_MODULEID"))
     private Module module;
 
+    @ManyToOne
+    @JoinColumn(name = "Ref_CategoryName", referencedColumnName="Ref_CategoryName", nullable = true, foreignKey = @ForeignKey(name="FK_CATEGORY_CAT_CATEGORYNAME"))
+    private CategorieName categorieName;
+
+
     @Column(name="Code_categ", nullable = false)
     private Integer categoryCode;
 
-    @Column(name="Nom_categ_FR")
+    @Column(name="Nom_Json" )
+    private String nameJson;
+
+    @Column(name="Nom_categ_FR" )
     private String nameFr;
 
     @Column(name="Nom_categ_AR")
