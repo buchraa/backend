@@ -1,6 +1,7 @@
 package com.mouridiyya.bibliomouride.service;
 
 import com.google.common.collect.Lists;
+import com.mouridiyya.bibliomouride.entity.Auteur;
 import com.mouridiyya.bibliomouride.entity.Categorie;
 import com.mouridiyya.bibliomouride.entity.Module;
 import com.mouridiyya.bibliomouride.model.CategoryQuery;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -43,5 +45,15 @@ public class CategoryService {
 
         return categoryRepository.save(toSave);
     }
+
+
+    public Categorie get(long id) {
+        return categoryRepository.findById(id).get();
+    }
+
+    public void delete(long id) {
+        categoryRepository.deleteById(id);
+    }
+
 
 }
