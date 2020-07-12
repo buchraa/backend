@@ -31,4 +31,15 @@ public class AuthorService {
         return authorRepository.save(toSave);
     }
 
+    public Auteur get(long id) {
+        return authorRepository.findById(id).get();
+    }
+
+    public void delete(long id) {
+         authorRepository.deleteById(id);
+    }
+
+
+
+
 }
