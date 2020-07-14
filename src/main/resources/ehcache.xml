@@ -1,0 +1,21 @@
+<config xmlns='http://www.ehcache.org/v3'>
+    <cache alias="findAllCache">
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findByIdCache">
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.mouridiyya.bibliomouride.entity.Author</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+</config>

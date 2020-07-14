@@ -1,6 +1,7 @@
 package com.mouridiyya.bibliomouride.service;
 
 import com.google.common.collect.Lists;
+import com.mouridiyya.bibliomouride.entity.Diwan;
 import com.mouridiyya.bibliomouride.entity.Module;
 import com.mouridiyya.bibliomouride.model.ModuleQuery;
 import com.mouridiyya.bibliomouride.repository.ModuleRepository;
@@ -29,6 +30,15 @@ public class ModuleService {
             }
         }
         return moduleRepository.save(toSave);
+    }
+
+
+    public Module get(long id) {
+        return moduleRepository.findById(id).get();
+    }
+
+    public void delete(long id) {
+        moduleRepository.deleteById(id);
     }
 
 }

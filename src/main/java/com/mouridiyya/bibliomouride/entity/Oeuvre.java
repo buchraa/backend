@@ -26,7 +26,7 @@ public class Oeuvre {
 
 
     @ManyToMany(mappedBy = "oeuvres", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Auteur> auteurs = new HashSet<>();
+    private Set<Author> Authors = new HashSet<>();
 
 
     @Column(name="Titre_oeuvre")

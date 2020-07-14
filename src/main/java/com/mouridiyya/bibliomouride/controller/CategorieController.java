@@ -1,7 +1,7 @@
 package com.mouridiyya.bibliomouride.controller;
 
 
-import com.mouridiyya.bibliomouride.entity.Auteur;
+import com.mouridiyya.bibliomouride.entity.Author;
 import com.mouridiyya.bibliomouride.entity.Categorie;
 import com.mouridiyya.bibliomouride.model.CategoryQuery;
 import com.mouridiyya.bibliomouride.service.CategoryService;

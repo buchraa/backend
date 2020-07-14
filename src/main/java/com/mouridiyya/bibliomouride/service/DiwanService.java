@@ -1,6 +1,7 @@
 package com.mouridiyya.bibliomouride.service;
 
 import com.google.common.collect.Lists;
+import com.mouridiyya.bibliomouride.entity.Categorie;
 import com.mouridiyya.bibliomouride.entity.Diwan;
 import com.mouridiyya.bibliomouride.model.DiwanQuery;
 import com.mouridiyya.bibliomouride.repository.DiwanRepository;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DiwanService {
+public class  DiwanService {
 
     @Autowired
     private DiwanRepository diwanRepository;
@@ -30,5 +31,15 @@ public class DiwanService {
         }
         return diwanRepository.save(toSave);
     }
+
+
+    public Diwan get(long id) {
+        return diwanRepository.findById(id).get();
+    }
+
+    public void delete(long id) {
+        diwanRepository.deleteById(id);
+    }
+
 
 }

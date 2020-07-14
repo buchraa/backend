@@ -1,7 +1,7 @@
 package com.mouridiyya.bibliomouride.service;
 
 import com.google.common.collect.Lists;
-import com.mouridiyya.bibliomouride.entity.Auteur;
+import com.mouridiyya.bibliomouride.entity.Author;
 import com.mouridiyya.bibliomouride.entity.Categorie;
 import com.mouridiyya.bibliomouride.entity.Module;
 import com.mouridiyya.bibliomouride.model.CategoryQuery;

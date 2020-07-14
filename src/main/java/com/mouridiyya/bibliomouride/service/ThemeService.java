@@ -1,6 +1,7 @@
 package com.mouridiyya.bibliomouride.service;
 
 import com.google.common.collect.Lists;
+import com.mouridiyya.bibliomouride.entity.Diwan;
 import com.mouridiyya.bibliomouride.entity.Theme;
 import com.mouridiyya.bibliomouride.model.ThemeQuery;
 import com.mouridiyya.bibliomouride.repository.ThemeRepository;
@@ -30,5 +31,14 @@ public class ThemeService {
         }
         return themeRepository.save(toSave);
     }
+
+    public Theme get(long id) {
+        return themeRepository.findById(id).get();
+    }
+
+    public void delete(long id) {
+        themeRepository.deleteById(id);
+    }
+
 
 }

@@ -25,8 +25,8 @@ public class TraductionOeuvre {
     @Column(name="Lg_trad")
     private String lgTrad;
 
-    @Column(name="AuteurTrad")
-    private String auteurTrad;
+    @Column(name="AuthorTrad")
+    private String AuthorTrad;
 
 }
 
