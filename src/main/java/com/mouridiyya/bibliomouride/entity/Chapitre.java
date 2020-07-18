@@ -52,5 +52,17 @@ public class Chapitre {
     @Column(name="Dispo_chap")
     private Integer dispo;
 
-
+    public Chapitre(Long chapterId, Integer num, String chapterType, Integer chapterSection, String titleAr, String titleFr, String titleEn, String titleWo, String theme, String vers, Integer dispo) {
+        this.chapterId = chapterId;
+        this.num = num;
+        this.chapterType = chapterType;
+        this.chapterSection = chapterSection;
+        this.titleAr = titleAr;
+        this.titleFr = titleFr;
+        this.titleEn = titleEn;
+        this.titleWo = titleWo;
+        this.theme = theme;
+        this.vers = vers;
+        this.dispo = dispo;
+    }
 }

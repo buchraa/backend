@@ -19,7 +19,7 @@ public class CategorieController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/categories")
+    @GetMapping("/Categories")
     public List<Categorie> getCategories() {
         return categoryService.getCategories();
     }
@@ -29,7 +29,7 @@ public class CategorieController {
         return categoryService.addUpdateCategory(categoryQuery);
     }
 
-    @GetMapping("/categorie/{id}")
+    @GetMapping("/Categorie/{id}")
     public ResponseEntity<Categorie> getCategorie(@PathVariable long id) {
         try {
             Categorie categorie = categoryService.get(id);
@@ -41,7 +41,7 @@ public class CategorieController {
         }
     }
 
-    @DeleteMapping("/categorie/{id}")
+    @DeleteMapping("/Categorie/{id}")
     public void delete(@PathVariable long id) {
         categoryService.delete(id);
     }

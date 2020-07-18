@@ -22,22 +22,21 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-@CacheConfig(cacheNames = "auteurCache")
 public class AuthorService {
 
     @Autowired
     private AuthorRepository authorRepository;
 
 
-    @Cacheable(cacheNames="findAllCache")
+    @Cacheable(cacheNames="findAllAuthor")
     public List<Author> getAuthors() {
         log.info("Connecting to DB...");
         return Lists.newArrayList(authorRepository.findAll());
     }
 
     @Caching(evict = {
-            @CacheEvict(value = "findAllCache", allEntries = true),
-            @CacheEvict(value = "findByIdCache", allEntries = true)})
+            @CacheEvict(value = "findAllAuthor", allEntries = true),
+            @CacheEvict(value = "findAuthorById", allEntries = true)})
     public Author addUpdateAuthor(AuthorQuery q) {
         Author toSave =  new Author(q.getAuthorId(),  q.getName(),  q.getBio(), q.getLink());
         if(Optional.ofNullable(q.getAuthorId()).orElse(null)!=null && q.getAuthorId() !=0){
@@ -49,24 +48,18 @@ public class AuthorService {
         return authorRepository.save(toSave);
     }
 
-    @Cacheable(cacheNames = "findByIdCache")
+    @Cacheable(cacheNames = "findAuthorById")
     public Author get(long id) {
         log.info("Connecting to DB...");
         return authorRepository.findById(id).get();
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = "findAllAuthor", allEntries = true),
+            @CacheEvict(value = "findAuthorById", allEntries = true)})
     public void delete(long id) {
          authorRepository.deleteById(id);
     }
-
-    @Autowired
-    CacheManager cacheManager;
-     public void flushCache() {
-         for (String cacheName : cacheManager.getCacheNames()){
-             cacheManager.getCache(cacheName).clear();
-             log.info("flushing: " + cacheName);
-         }
-     }
 
 
 

@@ -19,7 +19,7 @@ public class DiwanController {
     @Autowired
     private DiwanService diwanService;
 
-    @GetMapping("/diwans")
+    @GetMapping("/Diwans")
     public List<Diwan> getDiwans() {
         return diwanService.getDiwans();
     }
@@ -29,7 +29,7 @@ public class DiwanController {
         return diwanService.addUpdateDiwan(diwanQuery);
     }
 
-    @GetMapping("/diwan/{id}")
+    @GetMapping("/Diwan/{id}")
     public ResponseEntity<Diwan> getDiwan(@PathVariable long id) {
         try {
             Diwan diwan = diwanService.get(id);
@@ -41,7 +41,7 @@ public class DiwanController {
         }
     }
 
-    @DeleteMapping("/diwan/{id}")
+    @DeleteMapping("/Diwan/{id}")
     public void delete(@PathVariable long id) {
         diwanService.delete(id);
     }

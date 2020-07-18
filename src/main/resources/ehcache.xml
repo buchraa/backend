@@ -1,5 +1,5 @@
 <config xmlns='http://www.ehcache.org/v3'>
-    <cache alias="findAllCache">
+    <cache alias="findAllAuthor">
         <value-type>java.util.List</value-type>
         <expiry>
             <ttl unit="minutes">5</ttl>
@@ -8,9 +8,104 @@
             <heap unit="kB">10</heap>
         </resources>
     </cache>
-    <cache alias="findByIdCache">
+    <cache alias="findAuthorById">
         <key-type>java.lang.Long</key-type>
         <value-type>com.mouridiyya.bibliomouride.entity.Author</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findAllCategory">
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findCategoryById">
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.mouridiyya.bibliomouride.entity.Categorie</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findAllModule">
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findModuleById">
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.mouridiyya.bibliomouride.entity.Module</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findAllChapters">
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findChapterById">
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.mouridiyya.bibliomouride.entity.Chapitre</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findAllDiwan">
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findDiwanById">
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.mouridiyya.bibliomouride.entity.Diwan</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findAllTheme">
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+    </cache>
+    <cache alias="findThemeById">
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.mouridiyya.bibliomouride.entity.Theme</value-type>
         <expiry>
             <ttl unit="minutes">5</ttl>
         </expiry>

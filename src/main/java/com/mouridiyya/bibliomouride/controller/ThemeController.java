@@ -19,7 +19,7 @@ public class ThemeController {
     @Autowired
     private ThemeService themeService;
 
-    @GetMapping("/themes")
+    @GetMapping("/Themes")
     public List<Theme> getThemes() {
         return themeService.getThemes();
     }
@@ -29,7 +29,7 @@ public class ThemeController {
         return themeService.addUpdateTheme(themeQuery);
     }
 
-    @GetMapping("/theme/{id}")
+    @GetMapping("/Theme/{id}")
     public ResponseEntity<Theme> getTheme(@PathVariable long id) {
         try {
             Theme theme = themeService.get(id);
@@ -41,7 +41,7 @@ public class ThemeController {
         }
     }
 
-    @DeleteMapping("/theme/{id}")
+    @DeleteMapping("/Theme/{id}")
     public void delete(@PathVariable long id) {
         themeService.delete(id);
     }

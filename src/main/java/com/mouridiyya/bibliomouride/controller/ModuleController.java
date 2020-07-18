@@ -19,7 +19,7 @@ public class ModuleController {
     @Autowired
     private ModuleService moduleService;
 
-    @GetMapping("/modules")
+    @GetMapping("/Modules")
     public List<Module> getModules() {
         return moduleService.getModules();
     }
@@ -29,7 +29,7 @@ public class ModuleController {
         return moduleService.addUpdateModule(moduleQuery);
     }
 
-    @GetMapping("/module/{id}")
+    @GetMapping("/Module/{id}")
     public ResponseEntity<Module> getModule(@PathVariable long id) {
         try {
             Module module = moduleService.get(id);
@@ -41,7 +41,7 @@ public class ModuleController {
         }
     }
 
-    @DeleteMapping("/module/{id}")
+    @DeleteMapping("/Module/{id}")
     public void delete(@PathVariable long id) {
         moduleService.delete(id);
     }
