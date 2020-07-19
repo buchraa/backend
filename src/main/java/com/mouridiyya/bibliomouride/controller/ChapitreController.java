@@ -1,9 +1,7 @@
 package com.mouridiyya.bibliomouride.controller;
 
 
-import com.mouridiyya.bibliomouride.entity.Author;
 import com.mouridiyya.bibliomouride.entity.Chapitre;
-import com.mouridiyya.bibliomouride.model.AuthorQuery;
 import com.mouridiyya.bibliomouride.model.ChapitreQuery;
 import com.mouridiyya.bibliomouride.service.ChapitreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -21,6 +20,7 @@ public class ChapitreController {
     @Autowired
     private ChapitreService chapitreService;
 
+    //@RolesAllowed({ "admin", "user" })
     @GetMapping("/Chapters")
     public List<Chapitre> getChapters() {
         return chapitreService.getChapiters();

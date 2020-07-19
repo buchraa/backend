@@ -4,13 +4,12 @@ package com.mouridiyya.bibliomouride.controller;
 import com.mouridiyya.bibliomouride.entity.Author;
 import com.mouridiyya.bibliomouride.model.AuthorQuery;
 import com.mouridiyya.bibliomouride.service.AuthorService;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -21,6 +20,8 @@ public class AuteurController {
     @Autowired
     private AuthorService authorService;
 
+
+    //@RolesAllowed("user")
     @GetMapping("/Authors")
     public List<Author> getAuthors() {
         return authorService.getAuthors();

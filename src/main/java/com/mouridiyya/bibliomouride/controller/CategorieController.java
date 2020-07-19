@@ -1,7 +1,6 @@
 package com.mouridiyya.bibliomouride.controller;
 
 
-import com.mouridiyya.bibliomouride.entity.Author;
 import com.mouridiyya.bibliomouride.entity.Categorie;
 import com.mouridiyya.bibliomouride.model.CategoryQuery;
 import com.mouridiyya.bibliomouride.service.CategoryService;
@@ -10,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,6 +19,7 @@ public class CategorieController {
     @Autowired
     private CategoryService categoryService;
 
+    //@RolesAllowed("admin")
     @GetMapping("/Categories")
     public List<Categorie> getCategories() {
         return categoryService.getCategories();
