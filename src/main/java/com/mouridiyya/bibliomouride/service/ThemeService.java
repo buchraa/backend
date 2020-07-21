@@ -33,7 +33,7 @@ public class ThemeService {
             @CacheEvict(value = "findAllTheme", allEntries = true),
             @CacheEvict(value = "findThemeById", allEntries = true)})
     public Theme addUpdateTheme(ThemeQuery q) {
-        Theme toSave =  new Theme( q.getRefTheme(), q.getNomThemeFR(), q.getNomThemeAR(), q.getNomThemeEN(), q.getNomThemeWL());
+        Theme toSave =  new Theme( q.getRefTheme());
         if(Optional.ofNullable(q.getRefTheme()).orElse(null)!=null && q.getRefTheme() !=0){
             Optional<Theme> oldTheme = themeRepository.findById(Optional.ofNullable(q.getRefTheme()).orElse(null));
             if(oldTheme.isPresent()){

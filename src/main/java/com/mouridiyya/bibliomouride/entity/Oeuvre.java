@@ -35,29 +35,17 @@ public class Oeuvre {
     @Column(name="Titre_populaire")
     private String TitrePopulaire;
 
-    @Column(name="TitreAR")
-    private String titreAR;
-
-    @Column(name="TitreFR")
-    private String titreFR;
-
-    @Column(name="TitreEN")
-    private String titreEN;
-
-    @Column(name="TitreWL")
-    private String titreWL;
-
     @Column(name="Dispo_oeuvre")
     private Boolean disponibiliteOeuvre;
 
     @Column(name="TradFR")
-    private String tradFR;
+    private Boolean tradFR;
 
     @Column(name="TradEN")
-    private String tradEN;
+    private Boolean tradEN;
 
     @Column(name="TradWL")
-    private String tradWL;
+    private Boolean tradWL;
 
     @Column(name="PDF_oeuvre")
     private Boolean pdfOeuvre;

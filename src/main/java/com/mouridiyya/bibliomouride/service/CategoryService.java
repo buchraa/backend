@@ -40,7 +40,7 @@ public class CategoryService {
             @CacheEvict(value = "findAllCategory", allEntries = true),
             @CacheEvict(value = "findCategoryById", allEntries = true)})
     public Categorie addUpdateCategory(CategoryQuery q) {
-        Categorie toSave =  new Categorie( q.getCategoryId(),  q.getCategoryCode(),  q.getNameFr(),  q.getNameAr(),  q.getNameEn(),  q.getNameWo());
+        Categorie toSave =  new Categorie( q.getCategoryId(),  q.getCategoryCode());
 
         if(q.getModuleId()!=null && q.getModuleId()!=0){
             Optional<Module> oldModule = moduleRepository.findById(Optional.ofNullable(q.getModuleId()).orElse(null));

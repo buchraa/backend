@@ -34,7 +34,7 @@ public class  DiwanService {
             @CacheEvict(value = "findAllDiwan", allEntries = true),
             @CacheEvict(value = "findDiwanById", allEntries = true)})
     public Diwan addUpdateDiwan(DiwanQuery q) {
-        Diwan toSave =  new Diwan( q.getRefDiwan(),  q.getTitreDiwanAR(),  q.getTttreDiwanFR());
+        Diwan toSave =  new Diwan( q.getRefDiwan());
         if(Optional.ofNullable(q.getRefDiwan()).orElse(null)!=null && q.getRefDiwan() !=0){
             Optional<Diwan> oldDiwan = diwanRepository.findById(Optional.ofNullable(q.getRefDiwan()).orElse(null));
             if(oldDiwan.isPresent()){

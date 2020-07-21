@@ -18,16 +18,8 @@ public class Diwan {
     @Column(name = "Ref_diwan")
     private Long refDiwan;
 
-    @Column(name="Titre_diwan_AR")
-    private String titreDiwanAR;
-
-    @Column(name="Titre_diwan_FR")
-    private String tttreDiwanFR;
-
-    public Diwan(Long refDiwan, String titreDiwanAR, String tttreDiwanFR) {
+    public Diwan(Long refDiwan) {
         this.refDiwan = refDiwan;
-        this.titreDiwanAR = titreDiwanAR;
-        this.tttreDiwanFR = tttreDiwanFR;
     }
 }
 

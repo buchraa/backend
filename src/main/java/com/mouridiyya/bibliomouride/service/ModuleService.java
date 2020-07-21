@@ -33,7 +33,7 @@ public class ModuleService {
             @CacheEvict(value = "findAllModule", allEntries = true),
             @CacheEvict(value = "findModuleById", allEntries = true)})
     public Module addUpdateModule(ModuleQuery q) {
-        Module toSave =  new Module( q.getModuleId(),  q.getModuleCode(),  q.getNameFr(),  q.getNameAr(),  q.getNameEn(),  q.getNameWo(), q.getDispo());
+        Module toSave =  new Module( q.getModuleId(),  q.getModuleCode(), q.getDispo());
         if(Optional.ofNullable(q.getModuleId()).orElse(null)!=null && q.getModuleId() !=0){
             Optional<Module> oldAuthor = moduleRepository.findById(Optional.ofNullable(q.getModuleId()).orElse(null));
             if(oldAuthor.isPresent()){

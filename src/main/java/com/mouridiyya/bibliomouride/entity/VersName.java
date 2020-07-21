@@ -12,12 +12,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CategorieName {
+public class VersName {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="Ref_CategoryName")
-    private Long categorieNameId;
+    @Column(name="Ref_VersName")
+    private Long VersNameId;
 
     @Column(name="name", nullable = false)
     private String name;
@@ -26,14 +26,14 @@ public class CategorieName {
     private String codeLangue;
 
     @ManyToOne
-    @JoinColumn(name = "Ref_Categ", referencedColumnName="Ref_Categ", nullable = false, foreignKey = @ForeignKey(name="FK_CATEGORY_CAT_CATEGORYNAME"))
-    private Categorie categorie;
+    @JoinColumn(name = "Ref_vers", referencedColumnName="Ref_vers", nullable = false, foreignKey = @ForeignKey(name="FK_VERS_VERSNAME"))
+    private  Vers vers;
 
-    public CategorieName(Long categorieNameId, String name, String codeLangue, Categorie categorie) {
-        this.categorieNameId = categorieNameId;
+    public VersName(Long versNameId, String name, String codeLangue, Vers vers) {
+        VersNameId = versNameId;
         this.name = name;
         this.codeLangue = codeLangue;
-        this.categorie = categorie;
+        this.vers = vers;
     }
 }
 
