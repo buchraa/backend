@@ -113,42 +113,4 @@
             <heap unit="kB">10</heap>
         </resources>
     </cache>
-    <cache alias="findAllTVers">
-        <value-type>java.util.List</value-type>
-        <expiry>
-            <ttl unit="minutes">5</ttl>
-        </expiry>
-        <resources>
-            <heap unit="kB">10</heap>
-        </resources>
-    </cache>
-    <cache alias="findVerById">
-        <key-type>java.lang.Long</key-type>
-        <value-type>com.mouridiyya.bibliomouride.entity.Vers</value-type>
-        <expiry>
-            <ttl unit="minutes">5</ttl>
-        </expiry>
-        <resources>
-            <heap unit="kB">10</heap>
-        </resources>
-    </cache>
-    <cache alias="findAllOeuvres">
-        <value-type>java.util.List</value-type>
-        <expiry>
-            <ttl unit="minutes">5</ttl>
-        </expiry>
-        <resources>
-            <heap unit="kB">10</heap>
-        </resources>
-    </cache>
-    <cache alias="findOeuvreById">
-        <key-type>java.lang.Long</key-type>
-        <value-type>com.mouridiyya.bibliomouride.entity.Oeuvre</value-type>
-        <expiry>
-            <ttl unit="minutes">5</ttl>
-        </expiry>
-        <resources>
-            <heap unit="kB">10</heap>
-        </resources>
-    </cache>
 </config>
