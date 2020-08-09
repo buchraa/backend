@@ -131,34 +131,4 @@ public class Oeuvre {
     @Column(name="Remarques", length=512)
     private String Remarques;
 
-    public Oeuvre(Long refOeuvre, String titreOeuvre, String titrePopulaire, Boolean disponibiliteOeuvre, Boolean tradFR, Boolean tradEN, Boolean tradWL, Boolean pdfOeuvre, String premierVers, String presentation, String genre, String diwanPage, Integer nbVers, String acrostiche, String metriqueNom, String rime, String periode, String periodeDatation, String periodeLieu, String periodeRques, String authenticiteDegre, String forme_rques, String avantages, String modesLecture, String edition, String urlOeuvre, String achatOnline, String remarques) {
-        this.refOeuvre = refOeuvre;
-        this.titreOeuvre = titreOeuvre;
-        this.TitrePopulaire = titrePopulaire;
-        this.disponibiliteOeuvre = disponibiliteOeuvre;
-        this.tradFR = tradFR;
-        this.tradEN = tradEN;
-        this.tradWL = tradWL;
-        this.pdfOeuvre = pdfOeuvre;
-        this.premierVers = premierVers;
-        this.presentation = presentation;
-        this.genre = genre;
-        this.diwanPage = diwanPage;
-        this.nbVers = nbVers;
-        this.acrostiche = acrostiche;
-        this.metriqueNom = metriqueNom;
-        this.rime = rime;
-        this.periode = periode;
-        this.periodeDatation = periodeDatation;
-        this.PeriodeLieu = periodeLieu;
-        this.PeriodeRques = periodeRques;
-        this.AuthenticiteDegre = authenticiteDegre;
-        this.Forme_rques = forme_rques;
-        this.Avantages = avantages;
-        this.modesLecture = modesLecture;
-        this.edition = edition;
-        this.urlOeuvre = urlOeuvre;
-        this.achatOnline = achatOnline;
-        this.Remarques = remarques;
-    }
 }
