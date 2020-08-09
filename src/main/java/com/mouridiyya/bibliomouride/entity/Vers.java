@@ -43,6 +43,14 @@ public class Vers {
     @Column(name="Texte_versAR4", length=512)
     private String texteVersAR4;
 
+    @Column(name="Texte_versFR", length=512)
+    private String texteVersFR;
+
+    @Column(name="Texte_versEN", length=512)
+    private String texteVersEN;
+
+    @Column(name="Texte_versWL", length=512)
+    private String texteVersWL;
 }
 
 

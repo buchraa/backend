@@ -25,15 +25,10 @@ public class CategorieName {
     @Column(name="codeLangue")
     private String codeLangue;
 
-    @ManyToOne
-    @JoinColumn(name = "Ref_Categ", referencedColumnName="Ref_Categ", nullable = false, foreignKey = @ForeignKey(name="FK_CATEGORY_CAT_CATEGORYNAME"))
-    private Categorie categorie;
-
-    public CategorieName(Long categorieNameId, String name, String codeLangue, Categorie categorie) {
+    public CategorieName(Long categorieNameId, String name, String codeLangue) {
         this.categorieNameId = categorieNameId;
         this.name = name;
         this.codeLangue = codeLangue;
-        this.categorie = categorie;
     }
 }
 

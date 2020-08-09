@@ -18,9 +18,24 @@ public class Theme {
     @Column(name = "Ref_theme")
     private Long refTheme;
 
+    @Column(name="Nom_theme_FR")
+    private String nomThemeFR;
 
-    public Theme(Long refTheme) {
+    @Column(name="Nom_theme_AR")
+    private String nomThemeAR;
+
+    @Column(name="Nom_theme_EN")
+    private String nomThemeEN;
+
+    @Column(name="Nom_theme_WL")
+    private String nomThemeWL;
+
+    public Theme(Long refTheme, String nomThemeFR, String nomThemeAR, String nomThemeEN, String nomThemeWL) {
         this.refTheme = refTheme;
+        this.nomThemeFR = nomThemeFR;
+        this.nomThemeAR = nomThemeAR;
+        this.nomThemeEN = nomThemeEN;
+        this.nomThemeWL = nomThemeWL;
     }
 }
 

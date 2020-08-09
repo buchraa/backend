@@ -36,7 +36,7 @@ public class ChapitreService {
             @CacheEvict(value = "findAllChapters", allEntries = true),
             @CacheEvict(value = "findChapterById", allEntries = true)})
     public Chapitre addUpdateChapter(ChapitreQuery q) {
-        Chapitre toSave =  new Chapitre( q.getChapterId(),  q.getNum(),  q.getChapterType(), q.getChapterSection(), q.getTheme(), q.getVers(), q.getDispo());
+        Chapitre toSave =  new Chapitre( q.getChapterId(),  q.getNum(),  q.getChapterType(), q.getChapterSection(), q.getTitleAr(), q.getTitleFr(), q.getTitleEn(), q.getTitleWo(), q.getTheme(), q.getVers(), q.getDispo());
         if(Optional.ofNullable(q.getChapterId()).orElse(null)!=null && q.getChapterId() !=0){
             Optional<Chapitre> oldChapitre = chapitreRepository.findById(Optional.ofNullable(q.getChapterId()).orElse(null));
             if(oldChapitre.isPresent()){
