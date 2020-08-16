@@ -1,11 +1,14 @@
 package com.mouridiyya.bibliomouride.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,28 +18,29 @@ public class Theme {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Ref_theme")
-    private Long refTheme;
+    @Column(name = "themeID")
+    private Long themeId;
 
-    @Column(name="Nom_theme_FR")
-    private String nomThemeFR;
+    @Column(name="name")
+    private String name;
 
-    @Column(name="Nom_theme_AR")
-    private String nomThemeAR;
+    @Column(name="isAvailable")
+    private Boolean isAvailable;
 
-    @Column(name="Nom_theme_EN")
-    private String nomThemeEN;
+    @OneToMany(
+            mappedBy = "theme",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<ThemeTraduction> traductions = Lists.newArrayList();
 
-    @Column(name="Nom_theme_WL")
-    private String nomThemeWL;
-
-    public Theme(Long refTheme, String nomThemeFR, String nomThemeAR, String nomThemeEN, String nomThemeWL) {
-        this.refTheme = refTheme;
-        this.nomThemeFR = nomThemeFR;
-        this.nomThemeAR = nomThemeAR;
-        this.nomThemeEN = nomThemeEN;
-        this.nomThemeWL = nomThemeWL;
+    public Theme(Long themeId, String name, Boolean isAvailable) {
+        this.themeId = themeId;
+        this.name = name;
+        this.isAvailable = isAvailable;
     }
+
 }
 
 

@@ -1,7 +1,6 @@
 package com.mouridiyya.bibliomouride.controller;
 
 
-import com.mouridiyya.bibliomouride.entity.Diwan;
 import com.mouridiyya.bibliomouride.entity.Module;
 import com.mouridiyya.bibliomouride.model.ModuleQuery;
 import com.mouridiyya.bibliomouride.service.ModuleService;
@@ -33,11 +32,11 @@ public class ModuleController {
     public ResponseEntity<Module> getModule(@PathVariable long id) {
         try {
             Module module = moduleService.get(id);
-            return new ResponseEntity<Module>(module, HttpStatus.OK);
+            return new ResponseEntity<>(module, HttpStatus.OK);
         }
         catch (NoSuchElementException e)
         {
-            return new ResponseEntity<Module>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface AuthorRepository extends CrudRepository<Author, Long> {
     Optional<Author> findByName(String name);
-    Optional<Author> findByAuthorId(String name);
+    Optional<Author> findByAuthorId(Long name);
 }

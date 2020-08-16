@@ -6,15 +6,10 @@ import com.mouridiyya.bibliomouride.model.AuthorQuery;
 import com.mouridiyya.bibliomouride.repository.AuthorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.*;
-import org.springframework.stereotype.Service;
-import org.springframework.cache.annotation.Caching;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.CacheEvict;
-
-
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,9 +36,7 @@ public class AuthorService {
         Author toSave =  new Author(q.getAuthorId(),  q.getName(),  q.getBio(), q.getLink());
         if(Optional.ofNullable(q.getAuthorId()).orElse(null)!=null && q.getAuthorId() !=0){
             Optional<Author> oldAuthor = authorRepository.findById(Optional.ofNullable(q.getAuthorId()).orElse(null));
-            if(oldAuthor.isPresent()){
-                toSave.setAuthorId(oldAuthor.get().getAuthorId());
-            }
+            oldAuthor.ifPresent(author -> toSave.setAuthorId(author.getAuthorId()));
         }
         return authorRepository.save(toSave);
     }
@@ -62,7 +55,10 @@ public class AuthorService {
     }
 
 
-
+    public Author getAuthorByName(String name) {
+        Optional<Author> oldAuthor= authorRepository.findByName(name);
+        return oldAuthor.orElse(null);
+    }
 
 
 }

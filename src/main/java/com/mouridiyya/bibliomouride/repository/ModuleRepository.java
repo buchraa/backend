@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface ModuleRepository extends CrudRepository<Module, Long> {
-    Optional<Module> findByModuleCode(String code);
-    Optional<Module> findByModuleId(String name);
+    Optional<Module> findByModuleId(Long moduleId);
+    Optional<Module> findByName(String name);
 }

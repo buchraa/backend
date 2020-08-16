@@ -1,7 +1,6 @@
 package com.mouridiyya.bibliomouride.controller;
 
 
-import com.mouridiyya.bibliomouride.entity.Categorie;
 import com.mouridiyya.bibliomouride.entity.Diwan;
 import com.mouridiyya.bibliomouride.model.DiwanQuery;
 import com.mouridiyya.bibliomouride.service.DiwanService;
@@ -33,11 +32,11 @@ public class DiwanController {
     public ResponseEntity<Diwan> getDiwan(@PathVariable long id) {
         try {
             Diwan diwan = diwanService.get(id);
-            return new ResponseEntity<Diwan>(diwan, HttpStatus.OK);
+            return new ResponseEntity<>(diwan, HttpStatus.OK);
         }
         catch (NoSuchElementException e)
         {
-            return new ResponseEntity<Diwan>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

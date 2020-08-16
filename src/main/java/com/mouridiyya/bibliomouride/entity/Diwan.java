@@ -1,11 +1,14 @@
 package com.mouridiyya.bibliomouride.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,19 +18,28 @@ public class Diwan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Ref_diwan")
-    private Long refDiwan;
+    @Column(name = "diwanId")
+    private Long diwanId;
 
-    @Column(name="Titre_diwan_AR")
-    private String titreDiwanAR;
+    @Column(name="name")
+    private String name;
 
-    @Column(name="Titre_diwan_FR")
-    private String tttreDiwanFR;
+    @Column(name="isAvailable")
+    private Boolean isAvailable;
 
-    public Diwan(Long refDiwan, String titreDiwanAR, String tttreDiwanFR) {
-        this.refDiwan = refDiwan;
-        this.titreDiwanAR = titreDiwanAR;
-        this.tttreDiwanFR = tttreDiwanFR;
+    @OneToMany(
+            mappedBy = "diwan",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<DiwanTraduction> traductions = Lists.newArrayList();
+
+
+    public Diwan(Long diwanId, String name, Boolean isAvailable) {
+        this.diwanId = diwanId;
+        this.name = name;
+        this.isAvailable = isAvailable;
     }
 }
 

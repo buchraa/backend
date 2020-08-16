@@ -1,6 +1,7 @@
 package com.mouridiyya.bibliomouride.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,13 +30,10 @@ public class Author {
     @Column(name="Hyperlink_Author")
     private String link;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(
-            name = "Author_Oeuvre",
-            joinColumns = {@JoinColumn(name = "Ref_Author")},
-            inverseJoinColumns = {@JoinColumn(name = "Ref_oeuvre")}
-    )
+    @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonBackReference
     private Set<Oeuvre> oeuvres = new HashSet<>();
+
 
     public Author(Long authorId, String name, String bio, String link) {
         this.authorId = authorId;

@@ -1,6 +1,7 @@
 package com.mouridiyya.bibliomouride.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,23 +18,29 @@ public class Oeuvre {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="Ref_oeuvre")
-    private Long refOeuvre;
+    @Column(name="oeuvreId")
+    private Long oeuvreId;
 
     @ManyToOne
-    @JoinColumn(name = "Ref_categ", referencedColumnName="Ref_categ", nullable = true, foreignKey = @ForeignKey(name="FK_BOOK_CATEGORY_CATEGORYID"))
+    @JoinColumn(name = "categoryId", referencedColumnName="categoryId", foreignKey = @ForeignKey(name="FK_BOOK_CATEGORY_CATEGORYID"))
     private Categorie category;
 
 
-    @ManyToMany(mappedBy = "oeuvres", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Author> Authors = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinTable(
+            name = "Author_Oeuvre",
+            joinColumns = {@JoinColumn(name = "Ref_Author")},
+            inverseJoinColumns = {@JoinColumn(name = "oeuvreId")}
+    )
+    @JsonManagedReference
+    private Set<Author> authors = new HashSet<>();
 
 
     @Column(name="Titre_oeuvre")
     private String titreOeuvre;
 
     @Column(name="Titre_populaire")
-    private String TitrePopulaire;
+    private String titrePopulaire;
 
     @Column(name="TitreAR")
     private String titreAR;
@@ -65,16 +72,16 @@ public class Oeuvre {
     @Column(name="Premier_vers", length=512)
     private String premierVers;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Theme_principal", referencedColumnName = "Ref_theme", nullable = true, foreignKey = @ForeignKey(name="FK_OEUVRE_THEME_REFTHEME"))
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "themeId", referencedColumnName = "themeId", foreignKey = @ForeignKey(name="FK_OEUVRE_THEME_REFTHEME"))
     private Theme themePrincipal;
 
     @Column(name="Presentation", length=512)
     private String presentation;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Diwan_origine", referencedColumnName = "Ref_diwan", nullable = true, foreignKey = @ForeignKey(name="FK_OEUVRE_DIWAN_REFDIWAN"))
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "diwanId", referencedColumnName = "diwanId", foreignKey = @ForeignKey(name="FK_OEUVRE_DIWAN_REFDIWAN"))
     private Diwan diwanOrigine;
 
     @Column(name="Diwan_page")
@@ -102,19 +109,19 @@ public class Oeuvre {
     private String periodeDatation;
 
     @Column(name="Periode_lieu")
-    private String PeriodeLieu;
+    private String periodeLieu;
 
     @Column(name="Periode_rques", length=512)
-    private String PeriodeRques;
+    private String periodeRques;
 
     @Column(name="Authenticite_degre")
-    private String AuthenticiteDegre;
+    private String authenticiteDegre;
 
     @Column(name="Forme_rques", length=512)
-    private String Forme_rques;
+    private String forme_rques;
 
     @Column(name="Avantages", length=512)
-    private String Avantages;
+    private String avantages;
 
     @Column(name="Modes_lecture", length=512)
     private String modesLecture;
@@ -129,6 +136,49 @@ public class Oeuvre {
     private String achatOnline;
 
     @Column(name="Remarques", length=512)
-    private String Remarques;
+    private String remarques;
 
+    public Oeuvre(Long oeuvreId) {
+        this.oeuvreId = oeuvreId;
+    }
+
+
+    public Oeuvre(Long oeuvreId, Categorie category, Set<Author> authors, String titreOeuvre, String titrePopulaire, String titreAR, String titreFR, String titreEN, String titreWL, Boolean disponibiliteOeuvre, String tradFR, String tradEN, String tradWL, Boolean pdfOeuvre, String premierVers, Theme themePrincipal, String presentation, Diwan diwanOrigine, String diwanPage, String genre, Integer nbVers, String acrostiche, String metriqueNom, String rime, String periode, String periodeDatation, String periodeLieu, String periodeRques, String authenticiteDegre, String forme_rques, String avantages, String modesLecture, String edition, String urlOeuvre, String achatOnline, String remarques) {
+        this.oeuvreId = oeuvreId;
+        this.category = category;
+        this.authors = authors;
+        this.titreOeuvre = titreOeuvre;
+        this.titrePopulaire = titrePopulaire;
+        this.titreAR = titreAR;
+        this.titreFR = titreFR;
+        this.titreEN = titreEN;
+        this.titreWL = titreWL;
+        this.disponibiliteOeuvre = disponibiliteOeuvre;
+        this.tradFR = tradFR;
+        this.tradEN = tradEN;
+        this.tradWL = tradWL;
+        this.pdfOeuvre = pdfOeuvre;
+        this.premierVers = premierVers;
+        this.themePrincipal = themePrincipal;
+        this.presentation = presentation;
+        this.diwanOrigine = diwanOrigine;
+        this.diwanPage = diwanPage;
+        this.genre = genre;
+        this.nbVers = nbVers;
+        this.acrostiche = acrostiche;
+        this.metriqueNom = metriqueNom;
+        this.rime = rime;
+        this.periode = periode;
+        this.periodeDatation = periodeDatation;
+        this.periodeLieu = periodeLieu;
+        this.periodeRques = periodeRques;
+        this.authenticiteDegre = authenticiteDegre;
+        this.forme_rques = forme_rques;
+        this.avantages = avantages;
+        this.modesLecture = modesLecture;
+        this.edition = edition;
+        this.urlOeuvre = urlOeuvre;
+        this.achatOnline = achatOnline;
+        this.remarques = remarques;
+    }
 }

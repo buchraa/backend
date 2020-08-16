@@ -1,11 +1,14 @@
 package com.mouridiyya.bibliomouride.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,46 +18,30 @@ public class Categorie {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="Ref_Categ")
+    @Column(name="categoryId")
     private Long categoryId;
 
+    @Column(name="name")
+    private String name;
+
     @ManyToOne
-    @JoinColumn(name = "Ref_mod", referencedColumnName="Ref_mod", nullable = true, foreignKey = @ForeignKey(name="FK_CATEGORY_MODULE_MODULEID"))
+    @JoinColumn(name = "moduleId", referencedColumnName="moduleId", foreignKey = @ForeignKey(name="FK_CATEGORY_MODULE_MODULEID"))
     private Module module;
 
-    @ManyToOne
-    @JoinColumn(name = "Ref_CategoryName", referencedColumnName="Ref_CategoryName", nullable = true, foreignKey = @ForeignKey(name="FK_CATEGORY_CAT_CATEGORYNAME"))
-    private CategorieName categorieName;
+    @Column(name="isAvailable")
+    private Boolean isAvailable;
 
+    @OneToMany(
+            mappedBy = "categorie",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<CategorieTraduction> traductions = Lists.newArrayList();
 
-    @Column(name="Code_categ", nullable = false)
-    private Integer categoryCode;
-
-    @Column(name="Nom_Json" )
-    private String nameJson;
-
-    @Column(name="Nom_categ_FR" )
-    private String nameFr;
-
-    @Column(name="Nom_categ_AR")
-    private String nameAr;
-
-    @Column(name="Nom_categ_EN")
-    private String nameEn;
-
-    @Column(name="Nom_categ_WL")
-    private String nameWo;
-
-    @Column(name="Dispo_categ")
-    private Boolean dispoCateg;
-
-    public Categorie(Long categoryId, Integer categoryCode, String nameFr, String nameAr, String nameEn, String nameWo) {
+    public Categorie(Long categoryId, String name, Boolean isAvailable) {
         this.categoryId = categoryId;
-        this.module = null;
-        this.categoryCode = categoryCode;
-        this.nameFr = nameFr;
-        this.nameAr = nameAr;
-        this.nameEn = nameEn;
-        this.nameWo = nameWo;
+        this.name = name;
+        this.isAvailable = isAvailable;
     }
 }

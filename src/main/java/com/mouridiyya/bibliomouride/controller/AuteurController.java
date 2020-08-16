@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -36,11 +35,11 @@ public class AuteurController {
     public ResponseEntity<Author> getAuthor(@PathVariable long id) {
         try {
             Author Author = authorService.get(id);
-            return new ResponseEntity<Author>(Author, HttpStatus.OK);
+            return new ResponseEntity<>(Author, HttpStatus.OK);
         }
         catch (NoSuchElementException e)
         {
-            return new ResponseEntity<Author>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

@@ -19,7 +19,7 @@ public class Vers {
     private Long refVers;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Ref_chap", referencedColumnName = "Ref_chap", nullable = true, foreignKey = @ForeignKey(name="FK_VERS_CHAPITRE_REFCHAP"))
+    @JoinColumn(name = "chapitreId", referencedColumnName = "chapitreId", foreignKey = @ForeignKey(name="FK_VERS_CHAPITRE_REFCHAP"))
     private Chapitre Chapitre;
 
     @Column(name="Type_vers")

@@ -6,10 +6,6 @@ import lombok.Data;
 public class ModuleQuery {
 
     private Long moduleId;
-    private Integer moduleCode;
-    private String nameFr;
-    private String nameAr;
-    private String nameEn;
-    private String nameWo;
-    private Integer dispo;
+    private String name;
+    private Boolean isAvailable;
 }

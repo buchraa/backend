@@ -3,10 +3,9 @@ package com.mouridiyya.bibliomouride.model;
 import lombok.Data;
 
 @Data
-public class DiwanQuery {
-
+public class DiwanTraductionQuery {
     private Long diwanId;
+    private Long diwanTradId;
     private String name;
-    private Boolean isAvailable;
-
+    private String codeLangue;
 }

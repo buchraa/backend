@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -28,18 +27,18 @@ public class ChapitreController {
 
     @PostMapping("/addOrUpdateChapter")
     public Chapitre addUpdateChapter(@RequestBody ChapitreQuery chapitreQuery) {
-        return chapitreService.addUpdateChapter(chapitreQuery);
+        return chapitreService.addUpdateChapitre(chapitreQuery);
     }
 
     @GetMapping("/Chapter/{id}")
     public ResponseEntity<Chapitre> getChapter(@PathVariable long id) {
         try {
             Chapitre chapitre = chapitreService.get(id);
-            return new ResponseEntity<Chapitre>(chapitre, HttpStatus.OK);
+            return new ResponseEntity<>(chapitre, HttpStatus.OK);
         }
         catch (NoSuchElementException e)
         {
-            return new ResponseEntity<Chapitre>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

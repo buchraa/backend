@@ -3,10 +3,9 @@ package com.mouridiyya.bibliomouride.model;
 import lombok.Data;
 
 @Data
-public class CategoryQuery {
-
-    private Long categoryId;
+public class ModuleTraductionQuery {
+    private Long moduleTradId;
     private Long moduleId;
     private String name;
-    private Boolean isAvailable;
+    private String codeLangue;
 }

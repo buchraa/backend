@@ -1,7 +1,6 @@
 package com.mouridiyya.bibliomouride.controller;
 
 
-import com.mouridiyya.bibliomouride.entity.Module;
 import com.mouridiyya.bibliomouride.entity.Theme;
 import com.mouridiyya.bibliomouride.model.ThemeQuery;
 import com.mouridiyya.bibliomouride.service.ThemeService;
@@ -33,11 +32,11 @@ public class ThemeController {
     public ResponseEntity<Theme> getTheme(@PathVariable long id) {
         try {
             Theme theme = themeService.get(id);
-            return new ResponseEntity<Theme>(theme, HttpStatus.OK);
+            return new ResponseEntity<>(theme, HttpStatus.OK);
         }
         catch (NoSuchElementException e)
         {
-            return new ResponseEntity<Theme>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

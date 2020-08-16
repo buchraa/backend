@@ -1,11 +1,14 @@
 package com.mouridiyya.bibliomouride.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,34 +18,26 @@ public class Module {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="Ref_mod")
+    @Column(name="moduleId")
     private Long moduleId;
 
-    @Column(name="Code_mod", nullable = false)
-    private Integer moduleCode;
+    @Column(name="name")
+    private String name;
 
-    @Column(name="Nom_mod_FR")
-    private String nameFr;
+    @Column(name="isAvailable")
+    private Boolean isAvailable;
 
-    @Column(name="Nom_mod_AR")
-    private String nameAr;
+    @OneToMany(
+            mappedBy = "module",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<ModuleTraduction> traductions = Lists.newArrayList();
 
-    @Column(name="Nom_mod_EN")
-    private String nameEn;
-
-    @Column(name="Nom_mod_WL")
-    private String nameWo;
-
-    @Column(name="Dispo_mod")
-    private Integer dispo;
-
-    public Module(Long moduleId, Integer moduleCode, String nameFr, String nameAr, String nameEn, String nameWo, Integer dispo) {
+    public Module(Long moduleId, String name, Boolean isAvailable) {
         this.moduleId = moduleId;
-        this.moduleCode = moduleCode;
-        this.nameFr = nameFr;
-        this.nameAr = nameAr;
-        this.nameEn = nameEn;
-        this.nameWo = nameWo;
-        this.dispo = dispo;
+        this.name = name;
+        this.isAvailable = isAvailable;
     }
 }

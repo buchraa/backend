@@ -16,10 +16,10 @@ public class MediaOeuvre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Ref_oeuvre_media")
-    private Long Ref_oeuvre_media;
+    private Long refOeuvreMedia;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Ref_oeuvre", referencedColumnName = "Ref_oeuvre", nullable = true, foreignKey = @ForeignKey(name="FK_MEDIA_OEUVRE_REFOEUVRE"))
+    @JoinColumn(name = "oeuvreId", referencedColumnName = "oeuvreId", foreignKey = @ForeignKey(name="FK_MEDIA_OEUVRE_REFOEUVRE"))
     private Oeuvre oeuvre;
 
     @Column(name="Type_media")

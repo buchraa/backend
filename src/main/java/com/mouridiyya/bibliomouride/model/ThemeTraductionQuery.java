@@ -3,10 +3,9 @@ package com.mouridiyya.bibliomouride.model;
 import lombok.Data;
 
 @Data
-public class ThemeQuery {
-
+public class ThemeTraductionQuery {
     private Long themeId;
+    private Long themeTradId;
     private String name;
-    private Boolean isAvailable;
-
+    private String codeLangue;
 }
