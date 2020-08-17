@@ -47,12 +47,16 @@ public class AdminService {
         addCategoryTest();
         addThemeTest();
 
+
         addDiwanTraductionTest();
         addModuleTraductionTest();
         addCategoryTraductionTest();
         addThemeTraductionTest();
 
         addOeuvreTest();
+        addChapitreTest();
+        addChapitreTraductionTest();
+
 
     }
 
