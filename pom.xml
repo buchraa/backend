@@ -123,7 +123,7 @@
 				<version>2.4.0</version>
 				<configuration>
 					<to>
-						<image>docker.io/your-repo-in-dockerhub</image>
+						<image>docker.io/sdieng/biblio-app</image>
 					</to>
 					<container>
 						<ports>
