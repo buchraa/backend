@@ -2,12 +2,14 @@ package com.mouridiyya.bibliomouride.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -122,6 +124,14 @@ public class Oeuvre {
     public Oeuvre(Long oeuvreId) {
         this.oeuvreId = oeuvreId;
     }
+
+    @OneToMany(
+            mappedBy = "oeuvre",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<OeuvreTraduction> traductions = Lists.newArrayList();
 
 
     public Oeuvre(Long oeuvreId, Categorie category, Set<Author> authors, String titreOeuvre, String titrePopulaire, String titre, Boolean isAvailable, Boolean isPdfOeuvre, String premierVers, Theme themePrincipal, String presentation, Diwan diwanOrigine, String diwanPage, String genre, Integer nbVers, String acrostiche, String metriqueNom, String rime, String periode, String periodeDatation, String periodeLieu, String periodeRques, String authenticiteDegre, String formeRques, String avantages, String modesLecture, String edition, String urlOeuvre, String achatOnline, String remarques) {

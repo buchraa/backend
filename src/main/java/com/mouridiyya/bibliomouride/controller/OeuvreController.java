@@ -20,7 +20,7 @@ public class OeuvreController {
     private OeuvreService oeuvreService;
 
     @GetMapping("/oeuvres")
-    public List<Oeuvre> getAuthors() {
+    public List<Oeuvre> getOeuvres() {
         return oeuvreService.getOeuvres();
     }
 

@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface MediaOeuvreRepository extends CrudRepository<MediaOeuvre, Long> {
-    Optional<MediaOeuvre> findByRefOeuvreMedia(Long refOeuvreMedia);
+    Optional<MediaOeuvre> findByMediaOeuvreId(Long mediaOeuvreId);
 }

@@ -54,6 +54,7 @@ public class AdminService {
         addThemeTraductionTest();
 
         addOeuvreTest();
+        addOeuvreTraductionTest();
         addChapitreTest();
         addChapitreTraductionTest();
 
@@ -414,6 +415,63 @@ public class AdminService {
         query.setUrlOeuvre("http://khassidaenpdf.free.fr/khassida_pdf/Midadi%20-%20Traduction%20en%20francais.pdf");
 
         Oeuvre oeuvreSaved = oeuvreService.addOrUpdateOeuvre(query);
+
+    }
+
+    OeuvreTraduction addOeuvreTraduction(Long oeuvreId, String codeLangue, String titre, String traductionTitre, String avantages, String genre){
+        OeuvreTraductionQuery query = new OeuvreTraductionQuery();
+        query.setOeuvreId(oeuvreId);
+        query.setTitre(titre);
+        query.setTraductionTitre(traductionTitre);
+        query.setAvantages(avantages);
+        query.setCodeLangue(codeLangue);
+        query.setGenre(genre);
+        return oeuvreService.addUpdateOeuvreTraduction(query);
+    }
+
+    List<OeuvreTraduction> addOeuvreTraductionList(Long oeuvreId, Map<String,OeuvreTraductionQuery> mapTrad){
+        List<OeuvreTraduction> savedOeuvreTradList= Lists.newArrayList();
+        if(oeuvreId!=null){
+            for (Map.Entry<String, OeuvreTraductionQuery> trad : mapTrad.entrySet()) {
+                OeuvreTraductionQuery q = trad.getValue();
+                savedOeuvreTradList.add(addOeuvreTraduction(oeuvreId, trad.getKey(), q.getTitre(), q.getTraductionTitre(), q.getAvantages(), q.getGenre()));
+            }
+        }
+        return savedOeuvreTradList;
+    }
+
+
+    void addOeuvreTraductionTest(){
+
+        Oeuvre oeuvre = oeuvreService.findByTitreOeuvre("Midâdi Wa Aqlâmi");
+
+        List<OeuvreTraduction> savedOeuvreTradList;
+
+        Map<String,OeuvreTraductionQuery> mapTrad = Maps.newHashMap();
+
+        OeuvreTraductionQuery query = new OeuvreTraductionQuery();
+        query.setOeuvreId(oeuvre.getOeuvreId());
+        query.setCodeLangue("EN");
+        query.setTitre("Midâdi");
+        query.setTraductionTitre("my ink and my pen");
+        query.setAvantages("This poem makes the person love the Prophet deeply");
+        query.setGenre("Praise");
+        mapTrad.put("EN", query);
+
+
+        addOeuvreTraductionList(oeuvre.getOeuvreId(), mapTrad);
+
+        query = new OeuvreTraductionQuery();
+        query.setOeuvreId(oeuvre.getOeuvreId());
+        query.setCodeLangue("ZH");
+        query.setTitre("Midâdi");
+        query.setTraductionTitre("我的墨水和笔");
+        query.setAvantages("这首诗使人深深地爱着先知");
+        query.setGenre("赞美");
+        mapTrad.put("ZH", query);
+
+        addOeuvreTraductionList(oeuvre.getOeuvreId(), mapTrad);
+
 
     }
 

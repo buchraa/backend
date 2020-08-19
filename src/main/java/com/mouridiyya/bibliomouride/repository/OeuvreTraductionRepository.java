@@ -9,5 +9,7 @@ import java.util.Optional;
 public interface OeuvreTraductionRepository extends CrudRepository<OeuvreTraduction, Long> {
    Optional<OeuvreTraduction> findByTitre(String titre);
    Optional<OeuvreTraduction> findByOeuvreTradId(Long oeuvreTradId);
+   Optional<OeuvreTraduction> findByTitreAndCodeLangue(String name, String codeLangue);
+
 
 }

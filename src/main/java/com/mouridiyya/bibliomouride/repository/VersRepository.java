@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface VersRepository extends CrudRepository<Vers, Long> {
-    Optional<Vers> findByRefVers(Long refVers);
+    Optional<Vers> findByVersId(Long versId);
 }

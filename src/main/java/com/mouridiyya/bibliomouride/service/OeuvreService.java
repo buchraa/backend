@@ -2,7 +2,9 @@ package com.mouridiyya.bibliomouride.service;
 
 import com.google.common.collect.Lists;
 import com.mouridiyya.bibliomouride.entity.*;
+import com.mouridiyya.bibliomouride.model.CategoryTraductionQuery;
 import com.mouridiyya.bibliomouride.model.OeuvreQuery;
+import com.mouridiyya.bibliomouride.model.OeuvreTraductionQuery;
 import com.mouridiyya.bibliomouride.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class OeuvreService {
 
     @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private OeuvreTraductionRepository oeuvreTraductionRepository;
 
     public List<Oeuvre> getOeuvres() {
         return Lists.newArrayList(oeuvreRepository.findAll());
@@ -110,5 +115,27 @@ public class OeuvreService {
     public Oeuvre findByTitreOeuvre(String titreOeuvre) {
         Optional<Oeuvre> oldOeuvre = oeuvreRepository.findByTitreOeuvre(titreOeuvre);
         return oldOeuvre.orElse(null);
+    }
+
+
+    public OeuvreTraduction addUpdateOeuvreTraduction(OeuvreTraductionQuery q) {
+        OeuvreTraduction toSave =  new OeuvreTraduction( q.getOeuvreTradId(), q.getTitre(), q.getTraductionTitre(), q.getAvantages(),
+                q.getGenre(), q.getCodeLangue());
+
+        if(q.getOeuvreId()!=null && q.getOeuvreId()!=0){
+            Optional<Oeuvre> oldOeuvre= oeuvreRepository.findByOeuvreId(q.getOeuvreId());
+            oldOeuvre.ifPresent(toSave::setOeuvre);
+        }else {
+            log.info("OeuvreId is not filled...");
+            return null;
+        }
+
+        if( q.getTitre()!=null && q.getCodeLangue()!=null){
+            Optional<OeuvreTraduction> oldOeuvreTraduction = oeuvreTraductionRepository.findByTitreAndCodeLangue(q.getTitre(), q.getCodeLangue());
+            oldOeuvreTraduction.ifPresent(oeuvreTraduction -> toSave.setOeuvreTradId(oeuvreTraduction.getOeuvreTradId()));
+        }
+
+        return oeuvreTraductionRepository.save(toSave);
+
     }
 }

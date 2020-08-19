@@ -39,9 +39,13 @@ public class OeuvreTraduction {
     @JoinColumn(name = "oeuvreId", referencedColumnName="oeuvreId", foreignKey = @ForeignKey(name="FK_OEUVRETRADUCTION_OEUVREID"))
     private Oeuvre oeuvre;
 
-    public OeuvreTraduction(Long oeuvreTradId, String titre, String codeLangue) {
+
+    public OeuvreTraduction(Long oeuvreTradId, String titre, String traductionTitre, String avantages, String genre, String codeLangue) {
         this.oeuvreTradId = oeuvreTradId;
         this.titre = titre;
+        this.traductionTitre = traductionTitre;
+        this.avantages = avantages;
+        this.genre = genre;
         this.codeLangue = codeLangue;
     }
 }
