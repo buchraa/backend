@@ -1,11 +1,11 @@
 package com.mouridiyya.bibliomouride.service;
 
 import com.google.common.collect.Lists;
-import com.mouridiyya.bibliomouride.entity.*;
-import com.mouridiyya.bibliomouride.entity.Module;
+import com.mouridiyya.bibliomouride.entity.Chapitre;
+import com.mouridiyya.bibliomouride.entity.ChapitreTraduction;
+import com.mouridiyya.bibliomouride.entity.Oeuvre;
 import com.mouridiyya.bibliomouride.model.ChapitreQuery;
 import com.mouridiyya.bibliomouride.model.ChapitreTraductionQuery;
-import com.mouridiyya.bibliomouride.model.DiwanTraductionQuery;
 import com.mouridiyya.bibliomouride.repository.ChapitreRepository;
 import com.mouridiyya.bibliomouride.repository.ChapitreTraductionRepository;
 import com.mouridiyya.bibliomouride.repository.OeuvreRepository;

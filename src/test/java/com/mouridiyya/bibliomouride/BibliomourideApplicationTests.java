@@ -34,6 +34,8 @@ class BibliomourideApplicationTests {
 	private OeuvreService oeuvreService;
 	@Autowired
 	private ChapitreService chapitreService;
+	@Autowired
+	private VersService versService;
 
 
 	@Test
@@ -596,7 +598,90 @@ class BibliomourideApplicationTests {
 			assertTrue(savedChapitreTrad.getChapitreTradId()!= 0);
 		});
 
+	}
 
+
+	Vers addVers(Long chapterId, String typeVers, Integer numVers, Integer refVersNote, String texteVersAR1,
+					String texteVersAR2, String texteVersAR3, String texteVersAR4){
+
+		VersQuery query = new VersQuery();
+		query.setChapitreId(chapterId);
+		query.setTypeVers(typeVers);
+		query.setNumVers(numVers);
+		query.setRefVersNote(refVersNote);
+		query.setTexteVersAR1(texteVersAR1);
+		query.setTexteVersAR2(texteVersAR2);
+		query.setTexteVersAR3(texteVersAR3);
+		query.setTexteVersAR4(texteVersAR3);
+
+		return versService.addUpdateVers(query);
+	}
+
+	@Test
+	void addVersTest(){
+
+		Oeuvre oldOeuvre = oeuvreService.findByTitreOeuvre("Midâdi Wa Aqlâmi");
+		Long oeuvreId = oldOeuvre!=null ? oldOeuvre.getOeuvreId() : null;
+
+		Chapitre chapitre = chapitreService.findByTitleAndOeuvreId("Introduction", oeuvreId);
+
+		Long chapitreId = chapitre.getChapitreId();
+
+		List<Vers> savedVersList= Lists.newArrayList();
+
+
+		savedVersList.add(addVers( chapitreId,  "Vers",  1,
+				null, "أَسِيرُ مَعَ الْأَبْرَارِ حِينَ أَسِيرُ",  "وَظَنَّ الْعِدَى أَنِّي هُنَاكَ أَسِيرُ", null, null));
+
+		savedVersList.add(addVers( chapitreId,  "Vers",  2,
+				null, "مَسِيرِي مَعَ الْأَخْيَارِ لِلَّهِ بِالنَّبِيُ",  "وَمَا لِي لِغَيْرِ اللَّهِ عَوْضُ مَسِيرُُ", null, null));
+
+		savedVersList.forEach(savedVers->	{
+			assertTrue(savedVers.getVersId()!= 0);
+		});
+
+	}
+
+	VersTraduction addVersTraduction(Long versId, String codeLangue, String texte){
+		VersTraductionQuery query = new VersTraductionQuery();
+		query.setVersId(versId);
+		query.setCodeLangue(codeLangue);
+		query.setTexte(texte);
+		return versService.addUpdateVersTraduction(query);
+	}
+
+	List<VersTraduction> addVersTraductionList(Long versId, Map<String,String> mapTrad){
+		List<VersTraduction> savedVersTradList= Lists.newArrayList();
+		if(versId!=null){
+			for (Map.Entry<String, String> trad : mapTrad.entrySet()) {
+				savedVersTradList.add(addVersTraduction(versId, trad.getKey(), trad.getValue()));
+			}
+		}
+		return savedVersTradList;
+	}
+
+	@Test
+	void addVersTraductionTest(){
+		List<VersTraduction> versTraductionList;
+		Oeuvre oldOeuvre = oeuvreService.findByTitreOeuvre("Midâdi Wa Aqlâmi");
+		Long oeuvreId = oldOeuvre!=null ? oldOeuvre.getOeuvreId() : null;
+
+		Chapitre chapitre = chapitreService.findByTitleAndOeuvreId("Introduction", oeuvreId);
+		Long chapitreId = chapitre.getChapitreId();
+
+		//just pour test car des vers peuvent se trouver dans plusieurs oeuvres
+		Vers vers = versService.findByTexteVersAR1AndTexteVersAR2( "مَسِيرِي مَعَ الْأَخْيَارِ لِلَّهِ بِالنَّبِيُ",  "وَمَا لِي لِغَيْرِ اللَّهِ عَوْضُ مَسِيرُُ");
+
+
+		Map<String,String> mapVers = Maps.newHashMap();
+		mapVers.put("FR", "Je marchais en fait vers DIEU en compagnie du Prophète et de ses Excellents Compagnons car ma marche ne saurait point avoir d'autre objet que DIEU LUI-MEME…");
+		mapVers.put("EN", "I was in fact walking towards GOD in the company of the Prophet and his Excellent Companions because my walk could not have any other object than GOD HIMSELF");
+		mapVers.put("ZH", "实际上，我在先知和他的优秀同伴的陪伴下走向神，因为我的行走除了神HIMSELF之外别无其他目标...");
+
+		versTraductionList = addVersTraductionList(vers.getVersId(), mapVers);
+		versTraductionList.forEach(savedVersTrad->	{
+			assertTrue(savedVersTrad.getVersTradId()!= 0);
+		});
 
 	}
 

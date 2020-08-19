@@ -1,11 +1,14 @@
 package com.mouridiyya.bibliomouride.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,7 +21,7 @@ public class Vers {
     @Column(name = "versId")
     private Long versId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "chapitreId", referencedColumnName = "chapitreId", foreignKey = @ForeignKey(name="FK_VERS_CHAPITRE_REFCHAP"))
     private Chapitre Chapitre;
 
@@ -26,10 +29,10 @@ public class Vers {
     private String typeVers;
 
     @Column(name="Num_vers")
-    private Long numVers;
+    private Integer numVers;
 
     @Column(name="Ref_vers_note")
-    private Long refVersNote;
+    private Integer refVersNote;
 
     @Column(name="Texte_versAR1", length=512)
     private String texteVersAR1;
@@ -43,14 +46,25 @@ public class Vers {
     @Column(name="Texte_versAR4", length=512)
     private String texteVersAR4;
 
-    @Column(name="Texte_versFR", length=512)
-    private String texteVersFR;
+    @OneToMany(
+            mappedBy = "vers",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<VersTraduction> traductions = Lists.newArrayList();
 
-    @Column(name="Texte_versEN", length=512)
-    private String texteVersEN;
 
-    @Column(name="Texte_versWL", length=512)
-    private String texteVersWL;
+    public Vers(Long versId, String typeVers, Integer numVers, Integer refVersNote, String texteVersAR1, String texteVersAR2, String texteVersAR3, String texteVersAR4) {
+        this.versId = versId;
+        this.typeVers = typeVers;
+        this.numVers = numVers;
+        this.refVersNote = refVersNote;
+        this.texteVersAR1 = texteVersAR1;
+        this.texteVersAR2 = texteVersAR2;
+        this.texteVersAR3 = texteVersAR3;
+        this.texteVersAR4 = texteVersAR4;
+    }
 }
 
 
