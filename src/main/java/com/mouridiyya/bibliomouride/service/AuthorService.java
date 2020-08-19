@@ -33,7 +33,7 @@ public class AuthorService {
             @CacheEvict(value = "findAllAuthor", allEntries = true),
             @CacheEvict(value = "findAuthorById", allEntries = true)})
     public Author addUpdateAuthor(AuthorQuery q) {
-        Author toSave =  new Author(q.getAuthorId(),  q.getName(),  q.getBio(), q.getLink());
+        Author toSave =  new Author(q.getAuthorId(),  q.getName(),  q.getBiography(), q.getLink());
         if(Optional.ofNullable(q.getAuthorId()).orElse(null)!=null && q.getAuthorId() !=0){
             Optional<Author> oldAuthor = authorRepository.findById(Optional.ofNullable(q.getAuthorId()).orElse(null));
             oldAuthor.ifPresent(author -> toSave.setAuthorId(author.getAuthorId()));

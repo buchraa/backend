@@ -15,23 +15,23 @@ public class MediaOeuvre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Ref_oeuvre_media")
-    private Long refOeuvreMedia;
+    @Column(name = "mediaOeuvreId")
+    private Long mediaOeuvreId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "oeuvreId", referencedColumnName = "oeuvreId", foreignKey = @ForeignKey(name="FK_MEDIA_OEUVRE_REFOEUVRE"))
     private Oeuvre oeuvre;
 
-    @Column(name="Type_media")
+    @Column(name="typeMedia")
     private String typeMedia;
 
-    @Column(name="Genre_media")
+    @Column(name="genreMedia")
     private String genreMedia;
 
-    @Column(name="Titre_media", length=512)
+    @Column(name="titreMedia", length=512)
     private String titreMedia;
 
-    @Column(name="URL_media", length=512)
+    @Column(name="urlMedia", length=512)
     private String urlMedia;
 }
 

@@ -21,20 +21,20 @@ public class Chapitre {
     @Column(name="chapitreId")
     private Long chapitreId;
 
-    @Column(name="Num_chap")
+    @Column(name="numChap")
     private Integer num;
 
     @ManyToOne
     @JoinColumn(name = "oeuvreId", referencedColumnName = "oeuvreId", foreignKey = @ForeignKey(name="FK_CHAPITRE_OEUVRE_REFOEUVRE"))
     private Oeuvre oeuvre;
 
-    @Column(name="Type_chap")
+    @Column(name="typeChap")
     private String chapterType;
 
-    @Column(name="Section_chap")
+    @Column(name="sectionChap")
     private Integer chapterSection;
 
-    @Column(name="Theme_chap")
+    @Column(name="themeChap")
     private String theme;
 
     @Column(name="plageVers")

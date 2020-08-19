@@ -8,4 +8,6 @@ import java.util.Optional;
 
 public interface OeuvreRepository extends CrudRepository<Oeuvre, Long> {
    Optional<Oeuvre> findByTitreOeuvre(String titreOeuvre);
+   Optional<Oeuvre> findByOeuvreId(Long oeuvreId);
+
 }

@@ -41,9 +41,9 @@ public class OeuvreService {
         Categorie categery = null;
         Theme theme = null;
         Diwan diwan = null;
-        Long refCateg = Optional.ofNullable(oeuvreQuery.getRef_categ()).orElse(0L);
+        Long refCateg = Optional.ofNullable(oeuvreQuery.getCategoryId()).orElse(0L);
         if(refCateg!=0){
-            Optional<Categorie> oCategory = categoryRepository.findByCategoryId(oeuvreQuery.getRef_categ());
+            Optional<Categorie> oCategory = categoryRepository.findByCategoryId(oeuvreQuery.getCategoryId());
             if(oCategory.isPresent()){
                 categery =  oCategory.get();
             }else{
@@ -51,9 +51,9 @@ public class OeuvreService {
             }
         }
 
-        Long diwanOrigine = Optional.ofNullable(oeuvreQuery.getDiwan_origine()).orElse(0L);
+        Long diwanOrigine = Optional.ofNullable(oeuvreQuery.getDiwanOrigine()).orElse(0L);
         if(diwanOrigine!=0){
-            Optional<Diwan> oDiwan = diwanRepository.findByDiwanId(oeuvreQuery.getDiwan_origine());
+            Optional<Diwan> oDiwan = diwanRepository.findByDiwanId(oeuvreQuery.getDiwanOrigine());
             if(oDiwan.isPresent()){
                 diwan =  oDiwan.get();
             }else{
@@ -61,9 +61,9 @@ public class OeuvreService {
             }
         }
 
-        Long themePrincipal = Optional.ofNullable(oeuvreQuery.getTheme_principal()).orElse(0L);
+        Long themePrincipal = Optional.ofNullable(oeuvreQuery.getThemePrincipal()).orElse(0L);
         if(themePrincipal!=null && themePrincipal!=0){
-            Optional<Theme> oTheme = themeRepository.findByThemeId(oeuvreQuery.getTheme_principal());
+            Optional<Theme> oTheme = themeRepository.findByThemeId(oeuvreQuery.getThemePrincipal());
             if(oTheme.isPresent()){
                 theme =  oTheme.get();
             }else{
@@ -84,16 +84,21 @@ public class OeuvreService {
 
 
         Oeuvre oeuvre;
-        oeuvre = new Oeuvre (oeuvreQuery.getOeuvreId(), categery,  authors, oeuvreQuery.getTitre_oeuvre(), oeuvreQuery.getTitre_populaire(),
-                oeuvreQuery.getTitrear(),  oeuvreQuery.getTitrefr(), oeuvreQuery.getTitreen(),  oeuvreQuery.getTitrewl(),  oeuvreQuery.getDispo_oeuvre(),
-                oeuvreQuery.getTradfr(), oeuvreQuery.getTraden(), oeuvreQuery.getTitrewl(), oeuvreQuery.getPdf_oeuvre(), oeuvreQuery.getPremier_vers(), theme, oeuvreQuery.getPresentation(),
-                diwan, oeuvreQuery.getDiwan_page(), oeuvreQuery.getGenre(), oeuvreQuery.getNb_vers(), oeuvreQuery.getAcrostiche(), oeuvreQuery.getMetrique_nom(), oeuvreQuery.getRime(),
-                oeuvreQuery.getPeriode(), oeuvreQuery.getPeriode_datation(), oeuvreQuery.getPeriode_lieu(), oeuvreQuery.getPeriode_rques(), oeuvreQuery.getAuthenticite_degre(), oeuvreQuery.getForme_rques(),
-                oeuvreQuery.getAvantages(), oeuvreQuery.getModes_lecture(), oeuvreQuery.getEdition(), oeuvreQuery.getUrl_oeuvre(), oeuvreQuery.getAchat_online(),  oeuvreQuery.getRemarques());
+        oeuvre = new Oeuvre (oeuvreQuery.getOeuvreId(), categery,  authors, oeuvreQuery.getTitreOeuvre(), oeuvreQuery.getTitrePopulaire(),
+                oeuvreQuery.getTitre(), oeuvreQuery.getDispo_oeuvre(),
+              oeuvreQuery.getPdfOeuvre(), oeuvreQuery.getPremierVers(), theme, oeuvreQuery.getPresentation(),
+                diwan, oeuvreQuery.getDiwanPage(), oeuvreQuery.getGenre(), oeuvreQuery.getNbVers(), oeuvreQuery.getAcrostiche(), oeuvreQuery.getMetriqueNom(), oeuvreQuery.getRime(),
+                oeuvreQuery.getPeriode(), oeuvreQuery.getPeriodeDatation(), oeuvreQuery.getPeriodeLieu(), oeuvreQuery.getPeriodeRques(), oeuvreQuery.getAuthenticite_degre(), oeuvreQuery.getFormeRques(),
+                oeuvreQuery.getAvantages(), oeuvreQuery.getModesLecture(), oeuvreQuery.getEdition(), oeuvreQuery.getUrlOeuvre(), oeuvreQuery.getAchatOnline(),  oeuvreQuery.getRemarques());
 
         if(oeuvreQuery.getOeuvreId()!=null){
             Optional<Oeuvre> oldOeuvre = oeuvreRepository.findById(oeuvreQuery.getOeuvreId());
             oldOeuvre.ifPresent(value -> oeuvre.setOeuvreId(value.getOeuvreId()));
+        }
+
+        if(oeuvreQuery.getOeuvreId()!=null && oeuvreQuery.getOeuvreId()!=0){
+            Optional<Oeuvre> oldOeuvre= oeuvreRepository.findByOeuvreId(oeuvreQuery.getOeuvreId());
+            oldOeuvre.ifPresent(ov -> oeuvre.setOeuvreId(ov.getOeuvreId()));
         }
 
         Oeuvre savedOeuvre = oeuvreRepository.save(oeuvre);

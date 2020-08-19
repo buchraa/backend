@@ -18,16 +18,16 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="Ref_Author")
+    @Column(name="authorId")
     private Long authorId;
 
-    @Column(name="Nom_Author")
+    @Column(name="name")
     private String name;
 
-    @Column(name="Bio_Author", length=1024)
-    private String bio;
+    @Column(name="biography", length=1024)
+    private String biography;
 
-    @Column(name="Hyperlink_Author")
+    @Column(name="hyperlink")
     private String link;
 
     @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -35,10 +35,10 @@ public class Author {
     private Set<Oeuvre> oeuvres = new HashSet<>();
 
 
-    public Author(Long authorId, String name, String bio, String link) {
+    public Author(Long authorId, String name, String biography, String link) {
         this.authorId = authorId;
         this.name = name;
-        this.bio = bio;
+        this.biography = biography;
         this.link = link;
     }
 }

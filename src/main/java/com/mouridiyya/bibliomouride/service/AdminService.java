@@ -65,7 +65,7 @@ public class AdminService {
         AuthorQuery query = new AuthorQuery();
         query.setAuthorId(authorId);
         query.setName(name);
-        query.setBio(bio);
+        query.setBiography(bio);
         query.setLink(link);
         return authorService.addUpdateAuthor(query);
     }
@@ -379,39 +379,39 @@ public class AdminService {
 
         OeuvreQuery query = new OeuvreQuery();
         query.setOeuvreId(oldOeuvre!=null ? oldOeuvre.getOeuvreId() : null);
-        query.setAchat_online("www.amazon.com");
+        query.setAchatOnline("www.amazon.com");
         query.setAcrostiche("midaadii wa aqlaami");
         query.setAuthenticite_degre("100");
         query.setAvantages("baax na lool");
         query.setDispo_oeuvre(true);
-        query.setDiwan_origine(diwanService.findByName("Amdah").getDiwanId());
-        query.setDiwan_page("50");
+        query.setDiwanOrigine(diwanService.findByName("Amdah").getDiwanId());
+        query.setDiwanPage("50");
         query.setEdition("Minan");
-        query.setForme_rques("formrques");
+        query.setFormeRques("formrques");
         query.setGenre("panegerique");
-        query.setMetrique_nom("Basiit");
-        query.setModes_lecture("drouss");
-        query.setNb_vers(124);
-        query.setPdf_oeuvre(true);
+        query.setMetriqueNom("Basiit");
+        query.setModesLecture("drouss");
+        query.setNbVers(124);
+        query.setPdfOeuvre(true);
         query.setPeriode("Pre Exil");
-        query.setPeriode_datation("1913");
-        query.setPeriode_lieu("Diourbel");
-        query.setPeriode_rques("");
-        query.setPremier_vers("Midadii wa aqlaami liman zahzahal yammaa");
+        query.setPeriodeDatation("1913");
+        query.setPeriodeLieu("Diourbel");
+        query.setPeriodeRques("");
+        query.setPremierVers("Midadii wa aqlaami liman zahzahal yammaa");
         query.setPresentation("texte");
         Set<Long> refAuthors = Sets.newHashSet();
 
         refAuthors.add(authorService.getAuthorByName("Cheikh Ahmadou Bamba").getAuthorId());
         query.setRefAuthors(refAuthors);
 
-        query.setRef_categ(categoryService.findByName("Poèmes (Qasidas)").getCategoryId());
+        query.setCategoryId(categoryService.findByName("Poèmes (Qasidas)").getCategoryId());
         query.setRemarques("Pas de remarques");
         query.setRime("Awu");
-        query.setTheme_principal(themeService.findByName("Eloges du Prophète (Amdah)").getThemeId());
-        query.setTitre_oeuvre(titreOeuvre);
-        query.setTitre_populaire("Nawaytu");
-        query.setTitrear("مدادى و اقلامى");
-        query.setUrl_oeuvre("http://khassidaenpdf.free.fr/khassida_pdf/Midadi%20-%20Traduction%20en%20francais.pdf");
+        query.setThemePrincipal(themeService.findByName("Eloges du Prophète (Amdah)").getThemeId());
+        query.setTitreOeuvre(titreOeuvre);
+        query.setTitrePopulaire("Nawaytu");
+        query.setTitre("مدادى و اقلامى");
+        query.setUrlOeuvre("http://khassidaenpdf.free.fr/khassida_pdf/Midadi%20-%20Traduction%20en%20francais.pdf");
 
         Oeuvre oeuvreSaved = oeuvreService.addOrUpdateOeuvre(query);
 

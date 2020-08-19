@@ -15,8 +15,8 @@ public class Vers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Ref_vers")
-    private Long refVers;
+    @Column(name = "versId")
+    private Long versId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "chapitreId", referencedColumnName = "chapitreId", foreignKey = @ForeignKey(name="FK_VERS_CHAPITRE_REFCHAP"))

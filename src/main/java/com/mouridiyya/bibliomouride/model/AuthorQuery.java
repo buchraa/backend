@@ -7,7 +7,7 @@ public class AuthorQuery {
 
     private Long authorId;
     private String name;
-    private String bio;
+    private String biography;
     private String link;
 
 }
