@@ -2,7 +2,6 @@ package com.mouridiyya.bibliomouride.service;
 
 import com.google.common.collect.Lists;
 import com.mouridiyya.bibliomouride.entity.Chapitre;
-import com.mouridiyya.bibliomouride.entity.Oeuvre;
 import com.mouridiyya.bibliomouride.entity.Vers;
 import com.mouridiyya.bibliomouride.entity.VersTraduction;
 import com.mouridiyya.bibliomouride.model.VersQuery;

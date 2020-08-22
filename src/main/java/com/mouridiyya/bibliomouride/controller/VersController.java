@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class VersController {
 
@@ -20,7 +21,8 @@ public class VersController {
     private VersService versService;
 
 
-    //@RolesAllowed("user")
+
+    //@PreAuthorize("hasRole('USER')")
     @GetMapping("/vers")
     public List<Vers> getVers() {
         return versService.getVers();

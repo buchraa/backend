@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class AuteurController {
 
@@ -22,6 +23,7 @@ public class AuteurController {
 
     //@RolesAllowed("user")
     @GetMapping("/Authors")
+    //@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Author> getAuthors() {
         return authorService.getAuthors();
     }
