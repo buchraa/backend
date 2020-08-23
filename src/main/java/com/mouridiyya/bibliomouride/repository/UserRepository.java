@@ -1,7 +1,7 @@
 package com.mouridiyya.bibliomouride.repository;
 
 
-import com.mouridiyya.bibliomouride.entity.User;
+import com.mouridiyya.bibliomouride.entity.security.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

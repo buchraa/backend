@@ -1,4 +1,3 @@
-/*
 package com.mouridiyya.bibliomouride.configuration.security;
 
 
@@ -65,4 +64,3 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 }
-*/

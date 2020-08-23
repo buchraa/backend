@@ -1,7 +1,6 @@
-/*
 package com.mouridiyya.bibliomouride.configuration.security.services;
 
-import com.mouridiyya.bibliomouride.entity.User;
+import com.mouridiyya.bibliomouride.entity.security.User;
 import com.mouridiyya.bibliomouride.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,4 +25,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	}
 
 }
-*/
+

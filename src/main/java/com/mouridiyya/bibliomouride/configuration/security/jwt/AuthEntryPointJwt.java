@@ -1,4 +1,3 @@
-/*
 package com.mouridiyya.bibliomouride.configuration.security.jwt;
 
 import org.slf4j.Logger;
@@ -25,4 +24,4 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 	}
 
 }
-*/
+

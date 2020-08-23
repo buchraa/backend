@@ -1,4 +1,4 @@
-package com.mouridiyya.bibliomouride.entity;
+package com.mouridiyya.bibliomouride.entity.security;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,8 +1,7 @@
-/*
 package com.mouridiyya.bibliomouride.configuration.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mouridiyya.bibliomouride.entity.User;
+import com.mouridiyya.bibliomouride.entity.security.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -101,4 +100,4 @@ public class UserDetailsImpl implements UserDetails {
 		return Objects.equals(id, user.id);
 	}
 }
-*/
+

@@ -1,12 +1,11 @@
-/*
-package com.mouridiyya.bibliomouride.controller;
+package com.mouridiyya.bibliomouride.controller.security;
 
 
 import com.mouridiyya.bibliomouride.configuration.security.jwt.JwtUtils;
 import com.mouridiyya.bibliomouride.configuration.security.services.UserDetailsImpl;
-import com.mouridiyya.bibliomouride.entity.ERole;
-import com.mouridiyya.bibliomouride.entity.Role;
-import com.mouridiyya.bibliomouride.entity.User;
+import com.mouridiyya.bibliomouride.entity.security.ERole;
+import com.mouridiyya.bibliomouride.entity.security.Role;
+import com.mouridiyya.bibliomouride.entity.security.User;
 import com.mouridiyya.bibliomouride.model.payload.request.LoginRequest;
 import com.mouridiyya.bibliomouride.model.payload.request.SignupRequest;
 import com.mouridiyya.bibliomouride.model.payload.response.JwtResponse;
@@ -122,4 +121,4 @@ public class AuthController {
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 }
-*/
+
