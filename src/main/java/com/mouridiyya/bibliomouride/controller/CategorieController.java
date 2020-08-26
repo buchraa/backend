@@ -9,6 +9,7 @@ import com.mouridiyya.bibliomouride.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +22,9 @@ public class CategorieController {
     @Autowired
     private CategoryService categoryService;
 
-    //@RolesAllowed("admin")
+
     @GetMapping("/Categories")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Categorie> getCategories() {
         return categoryService.getCategories();
     }
