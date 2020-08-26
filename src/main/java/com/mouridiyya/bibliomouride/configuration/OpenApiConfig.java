@@ -33,7 +33,12 @@ public class OpenApiConfig {
                 .components(new Components().addSecuritySchemes("bearer-jwt",
                         new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")
                                 .in(SecurityScheme.In.HEADER).name("Authorization")))
-                .info(new Info().title("App API").version("snapshot"))
+                .info(new Info().title("API projet Biblioteque Mouride").version("snapshot")
+                        .description(
+                                "Acceder au patrimoine culturel de la Mouridiyya dans le numérique.")
+                        .termsOfService("http://swagger.io/terms/")
+                )
+
                 .addSecurityItem(
                         new SecurityRequirement().addList("bearer-jwt", Arrays.asList("read", "write")));
     }

@@ -30,7 +30,5 @@ springdoc:
     groups-order: DESC
   show-actuator: true
   group-configs:
-  - group: stores
-    paths-to-match: /**
   - group: users
     packages-to-scan: com.mouridiyya.bibliomouride.controller
