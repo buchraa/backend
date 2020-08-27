@@ -27,7 +27,7 @@ public class ModuleController {
     }
 
     @PostMapping("/addOrUpdateModule")
-    @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Module  addUpdateModule(@RequestBody ModuleQuery moduleQuery) {
         return moduleService.addUpdateModule(moduleQuery);
     }
@@ -46,7 +46,7 @@ public class ModuleController {
     }
 
     @DeleteMapping("/Module/{id}")
-    @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable long id) {
         moduleService.delete(id);
     }

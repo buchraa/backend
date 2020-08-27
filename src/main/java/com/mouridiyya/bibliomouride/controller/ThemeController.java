@@ -27,6 +27,7 @@ public class ThemeController {
     }
 
     @PostMapping("/addOrUpdateTheme")
+    @PreAuthorize("hasRole('ADMIN')")
     public Theme addOrUpdateTheme(@RequestBody ThemeQuery themeQuery) {
         return themeService.addUpdateTheme(themeQuery);
     }
@@ -45,7 +46,7 @@ public class ThemeController {
     }
 
     @DeleteMapping("/Theme/{id}")
-    @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable long id) {
         themeService.delete(id);
     }
