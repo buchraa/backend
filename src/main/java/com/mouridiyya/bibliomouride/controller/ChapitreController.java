@@ -23,19 +23,19 @@ public class ChapitreController {
 
     //@RolesAllowed({ "admin", "user" })
     @GetMapping("/Chapters")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public List<Chapitre> getChapters() {
         return chapitreService.getChapiters();
     }
 
     @PostMapping("/addOrUpdateChapter")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public Chapitre addUpdateChapter(@RequestBody ChapitreQuery chapitreQuery) {
         return chapitreService.addUpdateChapitre(chapitreQuery);
     }
 
     @GetMapping("/Chapter/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public ResponseEntity<Chapitre> getChapter(@PathVariable long id) {
         try {
             Chapitre chapitre = chapitreService.get(id);
@@ -48,7 +48,7 @@ public class ChapitreController {
     }
 
     @DeleteMapping("/Chapter/{id}")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public void delete(@PathVariable long id) {
         chapitreService.delete(id);
     }

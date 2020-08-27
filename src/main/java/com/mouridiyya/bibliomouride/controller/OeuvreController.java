@@ -19,13 +19,13 @@ public class OeuvreController {
     private OeuvreService oeuvreService;
 
     @GetMapping("/oeuvres")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public List<Oeuvre> getOeuvres() {
         return oeuvreService.getOeuvres();
     }
 
     @PostMapping("/addOrUpdateOeuvre")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public Oeuvre addOrUpdateOeuvre(@RequestBody OeuvreQuery oeuvreQuery) {
         return oeuvreService.addOrUpdateOeuvre(oeuvreQuery);
     }

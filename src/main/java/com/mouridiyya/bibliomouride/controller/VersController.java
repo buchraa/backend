@@ -23,19 +23,19 @@ public class VersController {
 
 
     @GetMapping("/vers")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public List<Vers> getVers() {
         return versService.getVers();
     }
 
     @PostMapping("/addOrUpdateVers")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public Vers addOrUpdateVers(@RequestBody VersQuery versQuery) {
         return versService.addUpdateVers(versQuery);
     }
 
     @GetMapping("/Vers/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public ResponseEntity<Vers> getAuthor(@PathVariable long id) {
         try {
             Vers vers = versService.get(id);
@@ -48,7 +48,7 @@ public class VersController {
     }
 
     @DeleteMapping("/Vers/{id}")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public void delete(@PathVariable long id) {
         versService.delete(id);
     }

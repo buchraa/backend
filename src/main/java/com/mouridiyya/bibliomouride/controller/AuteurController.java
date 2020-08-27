@@ -24,19 +24,19 @@ public class AuteurController {
 
     //@RolesAllowed("user")
     @GetMapping("/Authors")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public List<Author> getAuthors() {
         return authorService.getAuthors();
     }
 
     @PostMapping("/addOrUpdateAuthor")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public Author addUpdateAuthor(@RequestBody AuthorQuery authorQuery) {
         return authorService.addUpdateAuthor(authorQuery);
     }
 
     @GetMapping("/Author/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public ResponseEntity<Author> getAuthor(@PathVariable long id) {
         try {
             Author Author = authorService.get(id);
@@ -49,7 +49,7 @@ public class AuteurController {
     }
 
     @DeleteMapping("/Author/{id}")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public void delete(@PathVariable long id) {
         authorService.delete(id);
     }
