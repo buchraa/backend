@@ -7,6 +7,7 @@ import com.mouridiyya.bibliomouride.service.DiwanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,16 +21,19 @@ public class DiwanController {
     private DiwanService diwanService;
 
     @GetMapping("/Diwans")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Diwan> getDiwans() {
         return diwanService.getDiwans();
     }
 
     @PostMapping("/addOrUpdateDiwan")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public Diwan addOrUpdateTheme(@RequestBody DiwanQuery diwanQuery) {
         return diwanService.addUpdateDiwan(diwanQuery);
     }
 
     @GetMapping("/Diwan/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Diwan> getDiwan(@PathVariable long id) {
         try {
             Diwan diwan = diwanService.get(id);
@@ -42,6 +46,7 @@ public class DiwanController {
     }
 
     @DeleteMapping("/Diwan/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public void delete(@PathVariable long id) {
         diwanService.delete(id);
     }

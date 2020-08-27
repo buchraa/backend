@@ -7,6 +7,7 @@ import com.mouridiyya.bibliomouride.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,16 +21,19 @@ public class ModuleController {
     private ModuleService moduleService;
 
     @GetMapping("/Modules")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Module> getModules() {
         return moduleService.getModules();
     }
 
     @PostMapping("/addOrUpdateModule")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public Module  addUpdateModule(@RequestBody ModuleQuery moduleQuery) {
         return moduleService.addUpdateModule(moduleQuery);
     }
 
     @GetMapping("/Module/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Module> getModule(@PathVariable long id) {
         try {
             Module module = moduleService.get(id);
@@ -42,6 +46,7 @@ public class ModuleController {
     }
 
     @DeleteMapping("/Module/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public void delete(@PathVariable long id) {
         moduleService.delete(id);
     }

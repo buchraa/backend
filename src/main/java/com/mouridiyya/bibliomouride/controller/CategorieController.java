@@ -30,16 +30,19 @@ public class CategorieController {
     }
 
     @PostMapping("/addOrUpdateCategory")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public Categorie addUpdateCategory(@RequestBody CategoryQuery categoryQuery) {
         return categoryService.addUpdateCategory(categoryQuery);
     }
 
     @PostMapping("/addUpdateCategoryTraduction")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public CategorieTraduction addUpdateCategoryTraduction(@RequestBody CategoryTraductionQuery categoryTraductionQueryQuery) {
         return categoryService.addUpdateCategoryTraduction(categoryTraductionQueryQuery);
     }
 
     @GetMapping("/Categorie/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Categorie> getCategorie(@PathVariable long id) {
         try {
             Categorie categorie = categoryService.get(id);
@@ -52,6 +55,7 @@ public class CategorieController {
     }
 
     @DeleteMapping("/Categorie/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public void delete(@PathVariable long id) {
         categoryService.delete(id);
     }

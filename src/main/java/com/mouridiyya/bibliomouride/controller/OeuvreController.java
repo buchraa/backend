@@ -5,6 +5,7 @@ import com.mouridiyya.bibliomouride.entity.Oeuvre;
 import com.mouridiyya.bibliomouride.model.OeuvreQuery;
 import com.mouridiyya.bibliomouride.service.OeuvreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,11 +19,13 @@ public class OeuvreController {
     private OeuvreService oeuvreService;
 
     @GetMapping("/oeuvres")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Oeuvre> getOeuvres() {
         return oeuvreService.getOeuvres();
     }
 
     @PostMapping("/addOrUpdateOeuvre")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public Oeuvre addOrUpdateOeuvre(@RequestBody OeuvreQuery oeuvreQuery) {
         return oeuvreService.addOrUpdateOeuvre(oeuvreQuery);
     }
