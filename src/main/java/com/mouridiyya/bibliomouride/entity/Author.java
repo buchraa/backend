@@ -27,6 +27,9 @@ public class Author {
     @Column(name="biography", length=1024)
     private String biography;
 
+    @Column(name="imageUrl")
+    private String imageUrl;
+
     @Column(name="hyperlink")
     private String link;
 
@@ -35,10 +38,11 @@ public class Author {
     private Set<Oeuvre> oeuvres = new HashSet<>();
 
 
-    public Author(Long authorId, String name, String biography, String link) {
+    public Author(Long authorId, String name, String biography, String link, String imageUrl) {
         this.authorId = authorId;
         this.name = name;
         this.biography = biography;
         this.link = link;
+        this.imageUrl = imageUrl;
     }
 }

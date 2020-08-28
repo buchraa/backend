@@ -9,5 +9,6 @@ public class AuthorQuery {
     private String name;
     private String biography;
     private String link;
+    private String imageUrl;
 
 }

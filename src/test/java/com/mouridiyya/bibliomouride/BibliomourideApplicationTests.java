@@ -61,12 +61,13 @@ class BibliomourideApplicationTests {
 	}
 
 
-	Author addAuthor(Long authorId, String name, String bio, String link){
+	Author addAuthor(Long authorId, String name, String bio, String link, String imageUrl){
 		AuthorQuery query = new AuthorQuery();
 		query.setAuthorId(authorId);
 		query.setName(name);
 		query.setBiography(bio);
 		query.setLink(link);
+		query.setImageUrl(imageUrl);
 		return authorService.addUpdateAuthor(query);
 	}
 
@@ -79,17 +80,17 @@ class BibliomourideApplicationTests {
 	void addAuthorTest(){
 		List<Author> savedAuthorList= Lists.newArrayList();
 
-		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Ahmadou Bamba"), "Cheikh Ahmadou Bamba", "Cheikh Ahmadou Bamba Mbacké (Aḥmad ibn Muḥammad ibn Ḥabīb Allāh) dit Khadimou al-Rassoul", null));
-		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Muhammad Moustapha Mbacké"),"Cheikh Muhammad Moustapha Mbacké", "", null));
-		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Muhammad Bachir Mbacké"),"Cheikh Muhammad Bachir Mbacké", "", null));
-		savedAuthorList.add(addAuthor(getAuthorIdByName("S. El Hadj Mbacké Khelcom"),"S. El Hadj Mbacké Khelcom", "", null));
-		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Moussa Ka"),"Cheikh Moussa Ka", "", null));
-		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Gueye"),"Cheikh Gueye", "", null));
-		savedAuthorList.add(addAuthor(getAuthorIdByName("Mouhamadou Mbacké Diouf"),"Mouhamadou Mbacké Diouf", "", null));
-		savedAuthorList.add(addAuthor(getAuthorIdByName("Abdoul Aziz Mbacké Majalis"),"Abdoul Aziz Mbacké Majalis", "", null));
-		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Abdoul Ahad Mbacké"),"Cheikh Abdoul Ahad Mbacké", "", null));
-		savedAuthorList.add(addAuthor(getAuthorIdByName("Serigne Sam Mbaye"),"Serigne Sam Mbaye", "", null));
-		savedAuthorList.add(addAuthor(getAuthorIdByName("Serigne Mayib Gueye"),"Serigne Mayib Gueye", "", null));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Ahmadou Bamba"), "Cheikh Ahmadou Bamba", "Cheikh Ahmadou Bamba Mbacké (Aḥmad ibn Muḥammad ibn Ḥabīb Allāh) dit Khadimou al-Rassoul", null, "https://fr.wikipedia.org/wiki/Ahmadou_Bamba#/media/Fichier:AhmaduBamba.jpg"));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Muhammad Moustapha Mbacké"),"Cheikh Muhammad Moustapha Mbacké", "", null, "https://fr.m.wikipedia.org/wiki/Fichier:Serigne_moustapha_mback%C3%A9.jpg"));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Muhammad Bachir Mbacké"),"Cheikh Muhammad Bachir Mbacké", "", null, "https://www.igfm.sn/wp-content/uploads/2018/10/Serigne-Bassirou-e1540672398966.jpg"));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("S. El Hadj Mbacké Khelcom"),"S. El Hadj Mbacké Khelcom", "", null, null));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Moussa Ka"),"Cheikh Moussa Ka", "", null, null));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Gueye"),"Cheikh Gueye", "", null, "https://i.ytimg.com/vi/iIcEoq8jMFE/maxresdefault.jpg"));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("Mouhamadou Mbacké Diouf"),"Mouhamadou Mbacké Diouf", "", null, null));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("Abdoul Aziz Mbacké Majalis"),"Abdoul Aziz Mbacké Majalis", "", null, "https://xalimasn.com/wp-content/uploads/2011/04/Aziz3.jpg"));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("Cheikh Abdoul Ahad Mbacké"),"Cheikh Abdoul Ahad Mbacké", "", null, "https://www.emedia.sn/IMG/jpg/d9qjs-gxyae9yxj.jpg"));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("Serigne Sam Mbaye"),"Serigne Sam Mbaye", "", null, "https://uploads.podcloud.fr/uploads/covers/8840/d37b/7087/03aa/9a00/95ca/330e/4925/b561/ff9e/big_8840d37b708703aa9a0095ca330e4925b561ff9e.jpg?version=1558498632&"));
+		savedAuthorList.add(addAuthor(getAuthorIdByName("Serigne Mayib Gueye"),"Serigne Mayib Gueye", "", null, null));
 		savedAuthorList.forEach(savedAuthor->	{
 			assertTrue(savedAuthor.getAuthorId() != 0);
 		});

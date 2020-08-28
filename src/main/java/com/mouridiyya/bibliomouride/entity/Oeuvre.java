@@ -31,8 +31,8 @@ public class Oeuvre {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinTable(
             name = "Author_Oeuvre",
-            joinColumns = {@JoinColumn(name = "authorId")},
-            inverseJoinColumns = {@JoinColumn(name = "oeuvreId")}
+            joinColumns = {@JoinColumn(name = "oeuvreId")},
+            inverseJoinColumns = {@JoinColumn(name = "authorId  ")}
     )
     @JsonManagedReference
     private Set<Author> authors = new HashSet<>();
