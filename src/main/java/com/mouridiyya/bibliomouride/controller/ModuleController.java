@@ -21,7 +21,6 @@ public class ModuleController {
     private ModuleService moduleService;
 
     @GetMapping("/Modules")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public List<Module> getModules() {
         return moduleService.getModules();
     }
@@ -33,7 +32,6 @@ public class ModuleController {
     }
 
     @GetMapping("/Module/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public ResponseEntity<Module> getModule(@PathVariable long id) {
         try {
             Module module = moduleService.get(id);

@@ -24,7 +24,6 @@ public class CategorieController {
 
 
     @GetMapping("/Categories")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public List<Categorie> getCategories() {
         return categoryService.getCategories();
     }
@@ -42,7 +41,6 @@ public class CategorieController {
     }
 
     @GetMapping("/Categorie/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public ResponseEntity<Categorie> getCategorie(@PathVariable long id) {
         try {
             Categorie categorie = categoryService.get(id);

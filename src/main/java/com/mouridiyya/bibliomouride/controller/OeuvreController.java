@@ -19,7 +19,6 @@ public class OeuvreController {
     private OeuvreService oeuvreService;
 
     @GetMapping("/oeuvres")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public List<Oeuvre> getOeuvres() {
         return oeuvreService.getOeuvres();
     }

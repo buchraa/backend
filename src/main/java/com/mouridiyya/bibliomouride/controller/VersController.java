@@ -23,7 +23,6 @@ public class VersController {
 
 
     @GetMapping("/vers")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public List<Vers> getVers() {
         return versService.getVers();
     }
@@ -35,7 +34,6 @@ public class VersController {
     }
 
     @GetMapping("/Vers/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public ResponseEntity<Vers> getAuthor(@PathVariable long id) {
         try {
             Vers vers = versService.get(id);

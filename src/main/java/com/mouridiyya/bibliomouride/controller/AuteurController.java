@@ -22,7 +22,7 @@ public class AuteurController {
     private AuthorService authorService;
 
 
-    //@RolesAllowed("user")
+
     @GetMapping("/Authors")
     @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public List<Author> getAuthors() {
@@ -36,7 +36,6 @@ public class AuteurController {
     }
 
     @GetMapping("/Author/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public ResponseEntity<Author> getAuthor(@PathVariable long id) {
         try {
             Author Author = authorService.get(id);

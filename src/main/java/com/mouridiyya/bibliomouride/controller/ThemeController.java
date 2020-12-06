@@ -21,7 +21,6 @@ public class ThemeController {
     private ThemeService themeService;
 
     @GetMapping("/Themes")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public List<Theme> getThemes() {
         return themeService.getThemes();
     }
@@ -33,7 +32,6 @@ public class ThemeController {
     }
 
     @GetMapping("/Theme/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public ResponseEntity<Theme> getTheme(@PathVariable long id) {
         try {
             Theme theme = themeService.get(id);

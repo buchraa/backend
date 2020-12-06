@@ -23,8 +23,7 @@ public class ChapitreController {
 
     //@RolesAllowed({ "admin", "user" })
     @GetMapping("/Chapters")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
-    public List<Chapitre> getChapters() {
+   public List<Chapitre> getChapters() {
         return chapitreService.getChapiters();
     }
 
@@ -35,7 +34,6 @@ public class ChapitreController {
     }
 
     @GetMapping("/Chapter/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public ResponseEntity<Chapitre> getChapter(@PathVariable long id) {
         try {
             Chapitre chapitre = chapitreService.get(id);
