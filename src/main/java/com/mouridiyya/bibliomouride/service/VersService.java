@@ -2,11 +2,13 @@ package com.mouridiyya.bibliomouride.service;
 
 import com.google.common.collect.Lists;
 import com.mouridiyya.bibliomouride.entity.Chapitre;
+import com.mouridiyya.bibliomouride.entity.Oeuvre;
 import com.mouridiyya.bibliomouride.entity.Vers;
 import com.mouridiyya.bibliomouride.entity.VersTraduction;
 import com.mouridiyya.bibliomouride.model.VersQuery;
 import com.mouridiyya.bibliomouride.model.VersTraductionQuery;
 import com.mouridiyya.bibliomouride.repository.ChapitreRepository;
+import com.mouridiyya.bibliomouride.repository.OeuvreRepository;
 import com.mouridiyya.bibliomouride.repository.VersRepository;
 import com.mouridiyya.bibliomouride.repository.VersTraductionRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,9 @@ public class VersService {
 
     @Autowired
     private VersRepository versRepository;
+
+    @Autowired
+    private OeuvreRepository oeuvreRepository;
 
     @Autowired
     private ChapitreRepository chapitreRepository;
@@ -47,6 +52,12 @@ public class VersService {
             Optional<Chapitre> oldChapitre = chapitreRepository.findById(Optional.ofNullable(q.getChapitreId()).orElse(null));
                 oldChapitre.ifPresent(toSave::setChapitre);
         }
+
+        if(q.getOeuvreId()!=null && q.getOeuvreId()!=0){
+            Optional<Oeuvre> oldOeuvre = oeuvreRepository.findById(Optional.ofNullable(q.getOeuvreId()).orElse(null));
+            oldOeuvre.ifPresent(toSave::setOeuvre);
+        }
+
         if(q.getVersId()!=null && q.getVersId()!=0){
             Optional<Vers> oldVers= versRepository.findByVersId(q.getVersId());
             oldVers.ifPresent(categorie -> toSave.setVersId(categorie.getVersId()));

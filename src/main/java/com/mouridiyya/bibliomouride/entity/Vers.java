@@ -21,6 +21,10 @@ public class Vers {
     @Column(name = "versId")
     private Long versId;
 
+    @ManyToOne
+    @JoinColumn(name = "oeuvreId", referencedColumnName="oeuvreId", foreignKey = @ForeignKey(name="FK_VERS_OEUVRE_OEUVREID"))
+    private Oeuvre oeuvre;
+
     @OneToOne
     @JoinColumn(name = "chapitreId", referencedColumnName = "chapitreId", foreignKey = @ForeignKey(name="FK_VERS_CHAPITRE_REFCHAP"))
     private Chapitre Chapitre;

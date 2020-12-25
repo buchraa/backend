@@ -6,6 +6,7 @@ import lombok.Data;
 public class VersQuery {
 
     private Long versId;
+    private Long oeuvreId;
     private Long chapitreId;
     private String typeVers;
     private Integer numVers;
