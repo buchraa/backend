@@ -7,6 +7,7 @@ import com.mouridiyya.bibliomouride.model.OeuvreTraductionQuery;
 import com.mouridiyya.bibliomouride.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -114,6 +115,12 @@ public class OeuvreService {
     public Oeuvre findByTitreOeuvre(String titreOeuvre) {
         Optional<Oeuvre> oldOeuvre = oeuvreRepository.findByTitreOeuvre(titreOeuvre);
         return oldOeuvre.orElse(null);
+    }
+
+    @Cacheable(cacheNames = "findOeuvreById")
+    public Oeuvre get(long id) {
+        log.info("Connecting to DB...");
+        return oeuvreRepository.findById(id).get();
     }
 
 
