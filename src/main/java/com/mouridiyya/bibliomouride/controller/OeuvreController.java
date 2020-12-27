@@ -32,7 +32,17 @@ public class OeuvreController {
     public Oeuvre addOrUpdateOeuvre(@RequestBody OeuvreQuery oeuvreQuery) {
         return oeuvreService.addOrUpdateOeuvre(oeuvreQuery);
     }
-
+    @GetMapping("/Oeuvre/ByTitre/{titre}")
+    public ResponseEntity<Oeuvre> getOeuvreByTitre(@PathVariable String titre) {
+        try {
+            Oeuvre oeuvre = oeuvreService.findByTitreOeuvre(titre);
+            return new ResponseEntity<>(oeuvre, HttpStatus.OK);
+        }
+        catch (NoSuchElementException e)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
     @GetMapping("/Oeuvre/{id}")
     public ResponseEntity<Oeuvre> getOeuvre(@PathVariable long id) {
         try {

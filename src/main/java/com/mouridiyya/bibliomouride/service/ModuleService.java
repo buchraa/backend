@@ -3,6 +3,7 @@ package com.mouridiyya.bibliomouride.service;
 import com.google.common.collect.Lists;
 import com.mouridiyya.bibliomouride.entity.Module;
 import com.mouridiyya.bibliomouride.entity.ModuleTraduction;
+import com.mouridiyya.bibliomouride.entity.Oeuvre;
 import com.mouridiyya.bibliomouride.model.ModuleQuery;
 import com.mouridiyya.bibliomouride.model.ModuleTraductionQuery;
 import com.mouridiyya.bibliomouride.repository.ModuleRepository;
@@ -57,6 +58,7 @@ public class ModuleService {
         log.info("Connecting to DB...");
         return moduleRepository.findById(id).get();
     }
+
 
     public void delete(long id) {
         moduleRepository.deleteById(id);

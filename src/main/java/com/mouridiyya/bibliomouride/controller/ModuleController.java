@@ -2,6 +2,7 @@ package com.mouridiyya.bibliomouride.controller;
 
 
 import com.mouridiyya.bibliomouride.entity.Module;
+import com.mouridiyya.bibliomouride.entity.Oeuvre;
 import com.mouridiyya.bibliomouride.model.ModuleQuery;
 import com.mouridiyya.bibliomouride.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,18 @@ public class ModuleController {
         return moduleService.addUpdateModule(moduleQuery);
     }
 
+    @GetMapping("/Module/ByName/{name}")
+    public ResponseEntity<Module> getModuleByName(@PathVariable String name) {
+        try {
+            Module module = moduleService.findByName(name);
+            return new ResponseEntity<>(module, HttpStatus.OK);
+        }
+        catch (NoSuchElementException e)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/Module/{id}")
     public ResponseEntity<Module> getModule(@PathVariable long id) {
         try {
@@ -42,6 +55,7 @@ public class ModuleController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 
     @DeleteMapping("/Module/{id}")
     @PreAuthorize("hasRole('ADMIN')")

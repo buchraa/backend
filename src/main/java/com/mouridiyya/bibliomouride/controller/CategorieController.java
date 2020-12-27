@@ -40,6 +40,8 @@ public class CategorieController {
         return categoryService.addUpdateCategoryTraduction(categoryTraductionQueryQuery);
     }
 
+
+
     @GetMapping("/Categorie/{id}")
     public ResponseEntity<Categorie> getCategorie(@PathVariable long id) {
         try {
