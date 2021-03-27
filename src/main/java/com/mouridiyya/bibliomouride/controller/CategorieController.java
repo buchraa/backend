@@ -3,6 +3,7 @@ package com.mouridiyya.bibliomouride.controller;
 
 import com.mouridiyya.bibliomouride.entity.Categorie;
 import com.mouridiyya.bibliomouride.entity.CategorieTraduction;
+import com.mouridiyya.bibliomouride.entity.Module;
 import com.mouridiyya.bibliomouride.model.CategoryQuery;
 import com.mouridiyya.bibliomouride.model.CategoryTraductionQuery;
 import com.mouridiyya.bibliomouride.service.CategoryService;
@@ -40,7 +41,17 @@ public class CategorieController {
         return categoryService.addUpdateCategoryTraduction(categoryTraductionQueryQuery);
     }
 
-
+    @GetMapping("/Categorie/ByName/{name}")
+    public ResponseEntity<Categorie> getCategoryByName(@PathVariable String name) {
+        try {
+            Categorie category = categoryService.findByName(name);
+            return new ResponseEntity<>(category, HttpStatus.OK);
+        }
+        catch (NoSuchElementException e)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping("/Categorie/{id}")
     public ResponseEntity<Categorie> getCategorie(@PathVariable long id) {
