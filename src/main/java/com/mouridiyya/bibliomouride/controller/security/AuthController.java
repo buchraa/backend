@@ -3,6 +3,7 @@ package com.mouridiyya.bibliomouride.controller.security;
 
 import com.mouridiyya.bibliomouride.configuration.security.jwt.JwtUtils;
 import com.mouridiyya.bibliomouride.configuration.security.services.UserDetailsImpl;
+import com.mouridiyya.bibliomouride.entity.Author;
 import com.mouridiyya.bibliomouride.entity.security.ERole;
 import com.mouridiyya.bibliomouride.entity.security.Role;
 import com.mouridiyya.bibliomouride.entity.security.User;
@@ -13,6 +14,7 @@ import com.mouridiyya.bibliomouride.model.payload.response.MessageResponse;
 import com.mouridiyya.bibliomouride.repository.RoleRepository;
 import com.mouridiyya.bibliomouride.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -119,6 +122,20 @@ public class AuthController {
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+	}
+
+	@GetMapping("/user/current")
+	public ResponseEntity<?> getCurrentUser() {
+
+		try {
+
+			return new ResponseEntity<>(SecurityContextHolder.getContext().getAuthentication().getPrincipal(), HttpStatus.OK);
+		}
+		catch (NoSuchElementException e)
+		{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
 	}
 }
 
