@@ -37,5 +37,7 @@ public class OeuvreQuery {
     private Long diwanOrigine;
     private Long themePrincipal;
     private Set<Long> refAuthors;
+    private String audioOeuvre;
+    private String videoOeuvre;
   
 }

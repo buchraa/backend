@@ -44,7 +44,7 @@ public class VersService {
 
     public Vers addUpdateVers(VersQuery q) {
 
-        Vers toSave =  new Vers( q.getVersId(), q.getTypeVers(), q.getNumVers(), q.getRefVersNote(),
+        Vers toSave =  new Vers( q.getVersId(), q.getTypeVers(), q.getNumVers(), q.getRefVersNote(), q.getAudioVers(),
         q.getTexteVersAR1(), q.getTexteVersAR2(),q.getTexteVersAR3(),q.getTexteVersAR4());
 
 

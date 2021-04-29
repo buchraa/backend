@@ -94,7 +94,8 @@ public class OeuvreService {
               oeuvreQuery.getPdfOeuvre(), oeuvreQuery.getPremierVers(), theme, oeuvreQuery.getPresentation(),
                 diwan, oeuvreQuery.getDiwanPage(), oeuvreQuery.getGenre(), oeuvreQuery.getNbVers(), oeuvreQuery.getAcrostiche(), oeuvreQuery.getMetriqueNom(), oeuvreQuery.getRime(),
                 oeuvreQuery.getPeriode(), oeuvreQuery.getPeriodeDatation(), oeuvreQuery.getPeriodeLieu(), oeuvreQuery.getPeriodeRques(), oeuvreQuery.getAuthenticite_degre(), oeuvreQuery.getFormeRques(),
-                oeuvreQuery.getAvantages(), oeuvreQuery.getModesLecture(), oeuvreQuery.getEdition(), oeuvreQuery.getUrlOeuvre(), oeuvreQuery.getAchatOnline(),  oeuvreQuery.getRemarques());
+                oeuvreQuery.getAvantages(), oeuvreQuery.getModesLecture(), oeuvreQuery.getEdition(), oeuvreQuery.getUrlOeuvre(), oeuvreQuery.getAchatOnline(),  oeuvreQuery.getRemarques(),
+                oeuvreQuery.getVideoOeuvre(), oeuvreQuery.getAudioOeuvre());
 
         if(oeuvreQuery.getOeuvreId()!=null){
             Optional<Oeuvre> oldOeuvre = oeuvreRepository.findById(oeuvreQuery.getOeuvreId());

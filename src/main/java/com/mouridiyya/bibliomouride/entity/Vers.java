@@ -38,6 +38,9 @@ public class Vers {
     @Column(name="Ref_vers_note")
     private Integer refVersNote;
 
+    @Column(name="audioVers", length=512)
+    private String audioVers;
+
     @Column(name="Texte_versAR1", length=512)
     private String texteVersAR1;
 
@@ -59,11 +62,12 @@ public class Vers {
     private List<VersTraduction> traductions = Lists.newArrayList();
 
 
-    public Vers(Long versId, String typeVers, Integer numVers, Integer refVersNote, String texteVersAR1, String texteVersAR2, String texteVersAR3, String texteVersAR4) {
+    public Vers(Long versId, String typeVers, Integer numVers, Integer refVersNote, String audioVers, String texteVersAR1, String texteVersAR2, String texteVersAR3, String texteVersAR4) {
         this.versId = versId;
         this.typeVers = typeVers;
         this.numVers = numVers;
         this.refVersNote = refVersNote;
+        this.audioVers = audioVers;
         this.texteVersAR1 = texteVersAR1;
         this.texteVersAR2 = texteVersAR2;
         this.texteVersAR3 = texteVersAR3;

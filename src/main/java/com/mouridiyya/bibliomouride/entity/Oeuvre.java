@@ -106,6 +106,12 @@ public class Oeuvre {
     @Column(name="avantages", length=512)
     private String avantages;
 
+    @Column(name="videoOeuvre", length=512)
+    private String videoOeuvre;
+
+    @Column(name="audioOeuvre", length=512)
+    private String audioOeuvre;
+
     @Column(name="modesLecture", length=512)
     private String modesLecture;
 
@@ -134,7 +140,12 @@ public class Oeuvre {
     private List<OeuvreTraduction> traductions = Lists.newArrayList();
 
 
-    public Oeuvre(Long oeuvreId, Categorie category, Set<Author> authors, String titreOeuvre, String titrePopulaire, String titre, Boolean isAvailable, Boolean isPdfOeuvre, String premierVers, Theme themePrincipal, String presentation, Diwan diwanOrigine, String diwanPage, String genre, Integer nbVers, String acrostiche, String metriqueNom, String rime, String periode, String periodeDatation, String periodeLieu, String periodeRques, String authenticiteDegre, String formeRques, String avantages, String modesLecture, String edition, String urlOeuvre, String achatOnline, String remarques) {
+    public Oeuvre(Long oeuvreId, Categorie category, Set<Author> authors, String titreOeuvre, String titrePopulaire, String titre,
+                  Boolean isAvailable, Boolean isPdfOeuvre, String premierVers, Theme themePrincipal, String presentation, Diwan diwanOrigine,
+                  String diwanPage, String genre, Integer nbVers, String acrostiche, String metriqueNom, String rime, String periode,
+                  String periodeDatation, String periodeLieu, String periodeRques, String authenticiteDegre, String formeRques,
+                  String avantages, String modesLecture, String edition, String urlOeuvre, String achatOnline, String remarques,
+                  String audioOeuvre, String videoOeuvre) {
         this.oeuvreId = oeuvreId;
         this.category = category;
         this.authors = authors;
@@ -165,5 +176,7 @@ public class Oeuvre {
         this.urlOeuvre = urlOeuvre;
         this.achatOnline = achatOnline;
         this.remarques = remarques;
+        this.videoOeuvre = videoOeuvre;
+        this.audioOeuvre = audioOeuvre;
     }
 }
