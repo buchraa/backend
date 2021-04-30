@@ -128,8 +128,7 @@ public class AuthController {
 	public ResponseEntity<?> getCurrentUser() {
 
 		try {
-			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			return new ResponseEntity<>(user, HttpStatus.OK);
+			return new ResponseEntity<>(SecurityContextHolder.getContext().getAuthentication().getPrincipal(), HttpStatus.OK);
 		}
 		catch (NoSuchElementException e)
 		{
