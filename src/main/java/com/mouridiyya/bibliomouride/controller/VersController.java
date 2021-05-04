@@ -34,7 +34,7 @@ public class VersController {
     }
 
     @GetMapping("/Vers/{id}")
-    public ResponseEntity<Vers> getAuthor(@PathVariable long id) {
+    public ResponseEntity<Vers> getVers(@PathVariable long id) {
         try {
             Vers vers = versService.get(id);
             return new ResponseEntity<>(vers, HttpStatus.OK);

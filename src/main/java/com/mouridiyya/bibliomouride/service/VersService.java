@@ -82,23 +82,4 @@ public class VersService {
         return oldVers.orElse(null);
     }
 
-   public VersTraduction addUpdateVersTraduction(VersTraductionQuery q) {
-       VersTraduction toSave =  new VersTraduction( q.getVersTradId(), q.getTexte(), q.getCodeLangue());
-
-        if(q.getVersId()!=null && q.getVersId()!=0){
-            Optional<Vers> oldVers = versRepository.findByVersId(q.getVersId());
-            oldVers.ifPresent(toSave::setVers);
-        }else {
-            log.info("VersId is not filled...");
-            return null;
-        }
-
-       if(q.getVersTradId()!=null && q.getVersTradId()!=0){
-            Optional<VersTraduction> oldVersTraduction = versTraductionRepository.findByVersTradId(q.getVersTradId());
-           oldVersTraduction.ifPresent(categorieTraduction -> toSave.setVersTradId(categorieTraduction.getVersTradId()));
-        }
-
-        return versTraductionRepository.save(toSave);
-
-    }
 }
