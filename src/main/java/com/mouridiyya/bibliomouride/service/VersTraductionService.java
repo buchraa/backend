@@ -39,7 +39,7 @@ public class VersTraductionService {
             @CacheEvict(value = "findVersTraductionById", allEntries = true)})
     public VersTraduction addUpdateVersTraduction(VersTraductionQuery q) {
 
-        VersTraduction toSave =  new VersTraduction( q.getVersTraductionId(), q.getTexte(), q.getCodeLangue());
+        VersTraduction toSave =  new VersTraduction( q.getVersTradId(), q.getTexte(), q.getCodeLangue());
 
         if(q.getVersId()!=null && q.getVersId()!=0){
             Optional<Vers> oldVers = versRepository.findByVersId(Optional.ofNullable(q.getVersId()).orElse(null));
@@ -47,7 +47,7 @@ public class VersTraductionService {
         }
         if(q.getTexte()!=null && !q.getTexte().isEmpty()){
             Optional<VersTraduction> oldVersTraduction= versTraductionRepository.findByTexteAndCodeLangue(q.getTexte(), q.getCodeLangue() );
-            oldVersTraduction.ifPresent(versTraduction -> toSave.setVersTraductionId(versTraduction.getVersTraductionId()));
+            oldVersTraduction.ifPresent(versTraduction -> toSave.setVersTradId(versTraduction.getVersTradId()));
         }
         return versTraductionRepository.save(toSave);
     }
