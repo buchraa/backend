@@ -33,6 +33,7 @@ public class OeuvreQuery {
     private String titre;
     private String titreOeuvre;
     private String urlOeuvre;
+    private String mediaOeuvre;
     private Long categoryId;
     private Long diwanOrigine;
     private Long themePrincipal;

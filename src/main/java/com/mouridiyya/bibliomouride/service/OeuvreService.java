@@ -7,7 +7,9 @@ import com.mouridiyya.bibliomouride.model.OeuvreTraductionQuery;
 import com.mouridiyya.bibliomouride.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -42,6 +44,10 @@ public class OeuvreService {
         return Lists.newArrayList(oeuvreRepository.findAll());
     }
 
+
+    @Caching(evict = {
+            @CacheEvict(value = "findAllOeuvre", allEntries = true),
+            @CacheEvict(value = "findOeuvreById", allEntries = true)})
     public Oeuvre addOrUpdateOeuvre(OeuvreQuery oeuvreQuery) {
         Categorie categery = null;
         Theme theme = null;
@@ -95,7 +101,7 @@ public class OeuvreService {
               oeuvreQuery.getIsPdfOeuvre(), oeuvreQuery.getPremierVers(), theme, oeuvreQuery.getPresentation(),
                 diwan, oeuvreQuery.getDiwanPage(), oeuvreQuery.getGenre(), oeuvreQuery.getNbVers(), oeuvreQuery.getAcrostiche(), oeuvreQuery.getMetriqueNom(), oeuvreQuery.getRime(),
                 oeuvreQuery.getPeriode(), oeuvreQuery.getPeriodeDatation(), oeuvreQuery.getPeriodeLieu(), oeuvreQuery.getPeriodeRques(), oeuvreQuery.getAuthenticite_degre(), oeuvreQuery.getFormeRques(),
-                oeuvreQuery.getAvantages(), oeuvreQuery.getModesLecture(), oeuvreQuery.getEdition(), oeuvreQuery.getUrlOeuvre(), oeuvreQuery.getAchatOnline(),  oeuvreQuery.getRemarques(),
+                oeuvreQuery.getAvantages(), oeuvreQuery.getModesLecture(), oeuvreQuery.getEdition(), oeuvreQuery.getUrlOeuvre(), oeuvreQuery.getMediaOeuvre(), oeuvreQuery.getAchatOnline(),  oeuvreQuery.getRemarques(),
                 oeuvreQuery.getAudioOeuvre());
 
         if(oeuvreQuery.getOeuvreId()!=null){

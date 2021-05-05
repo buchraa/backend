@@ -118,6 +118,9 @@ public class Oeuvre {
     @Column(name="urlOeuvre", length=512)
     private String urlOeuvre;
 
+    @Column(name="mediaOeuvre", length=512)
+    private String mediaOeuvre;
+
     @Column(name="achatOnline", length=512)
     private String achatOnline;
 
@@ -141,7 +144,7 @@ public class Oeuvre {
                   Boolean dispo_oeuvre, Boolean isPdfOeuvre, String premierVers, Theme themePrincipal, String presentation, Diwan diwanOrigine,
                   String diwanPage, String genre, Integer nbVers, String acrostiche, String metriqueNom, String rime, String periode,
                   String periodeDatation, String periodeLieu, String periodeRques, String authenticiteDegre, String formeRques,
-                  String avantages, String modesLecture, String edition, String urlOeuvre, String achatOnline, String remarques,
+                  String avantages, String modesLecture, String edition, String urlOeuvre, String mediaOeuvre, String achatOnline, String remarques,
                   String audioOeuvre) {
         this.oeuvreId = oeuvreId;
         this.category = category;
@@ -171,6 +174,7 @@ public class Oeuvre {
         this.modesLecture = modesLecture;
         this.edition = edition;
         this.urlOeuvre = urlOeuvre;
+        this.mediaOeuvre = mediaOeuvre;
         this.achatOnline = achatOnline;
         this.remarques = remarques;
         this.audioOeuvre = audioOeuvre;
