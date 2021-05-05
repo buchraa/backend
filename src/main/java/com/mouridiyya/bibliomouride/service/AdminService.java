@@ -393,7 +393,7 @@ public class AdminService {
         query.setMetriqueNom("Basiit");
         query.setModesLecture("drouss");
         query.setNbVers(124);
-        query.setPdfOeuvre(true);
+        query.setIsPdfOeuvre(true);
         query.setPeriode("Pre Exil");
         query.setPeriodeDatation("1913");
         query.setPeriodeLieu("Diourbel");
