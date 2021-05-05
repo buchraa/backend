@@ -38,6 +38,6 @@ public class OeuvreQuery {
     private Long themePrincipal;
     private Set<Long> refAuthors;
     private String audioOeuvre;
-    private String videoOeuvre;
+
   
 }

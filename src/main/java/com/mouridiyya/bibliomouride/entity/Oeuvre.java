@@ -106,9 +106,6 @@ public class Oeuvre {
     @Column(name="avantages", length=512)
     private String avantages;
 
-    @Column(name="videoOeuvre", length=512)
-    private String videoOeuvre;
-
     @Column(name="audioOeuvre", length=512)
     private String audioOeuvre;
 
@@ -145,7 +142,7 @@ public class Oeuvre {
                   String diwanPage, String genre, Integer nbVers, String acrostiche, String metriqueNom, String rime, String periode,
                   String periodeDatation, String periodeLieu, String periodeRques, String authenticiteDegre, String formeRques,
                   String avantages, String modesLecture, String edition, String urlOeuvre, String achatOnline, String remarques,
-                  String audioOeuvre, String videoOeuvre) {
+                  String audioOeuvre) {
         this.oeuvreId = oeuvreId;
         this.category = category;
         this.authors = authors;
@@ -176,7 +173,6 @@ public class Oeuvre {
         this.urlOeuvre = urlOeuvre;
         this.achatOnline = achatOnline;
         this.remarques = remarques;
-        this.videoOeuvre = videoOeuvre;
         this.audioOeuvre = audioOeuvre;
     }
 }
