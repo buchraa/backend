@@ -47,8 +47,8 @@ public class Oeuvre {
     @Column(name="titre")
     private String titre;
 
-    @Column(name="isAvailable")
-    private Boolean isAvailable;
+    @Column(name="dispo_oeuvre")
+    private Boolean dispo_oeuvre;
 
     @Column(name="isPdfOeuvre")
     private Boolean isPdfOeuvre;
@@ -141,7 +141,7 @@ public class Oeuvre {
 
 
     public Oeuvre(Long oeuvreId, Categorie category, Set<Author> authors, String titreOeuvre, String titrePopulaire, String titre,
-                  Boolean isAvailable, Boolean isPdfOeuvre, String premierVers, Theme themePrincipal, String presentation, Diwan diwanOrigine,
+                  Boolean dispo_oeuvre, Boolean isPdfOeuvre, String premierVers, Theme themePrincipal, String presentation, Diwan diwanOrigine,
                   String diwanPage, String genre, Integer nbVers, String acrostiche, String metriqueNom, String rime, String periode,
                   String periodeDatation, String periodeLieu, String periodeRques, String authenticiteDegre, String formeRques,
                   String avantages, String modesLecture, String edition, String urlOeuvre, String achatOnline, String remarques,
@@ -152,7 +152,7 @@ public class Oeuvre {
         this.titreOeuvre = titreOeuvre;
         this.titrePopulaire = titrePopulaire;
         this.titre = titre;
-        this.isAvailable = isAvailable;
+        this.dispo_oeuvre = dispo_oeuvre;
         this.isPdfOeuvre = isPdfOeuvre;
         this.premierVers = premierVers;
         this.themePrincipal = themePrincipal;

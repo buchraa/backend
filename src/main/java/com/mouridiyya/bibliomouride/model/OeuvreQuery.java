@@ -24,7 +24,7 @@ public class OeuvreQuery {
     private String metriqueNom;
     private String modesLecture;
     private Integer nbVers;
-    private Boolean pdfOeuvre;
+    private Boolean isPdfOeuvre;
     private String periode;
     private String periodeDatation;
     private String premierVers;

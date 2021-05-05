@@ -88,10 +88,11 @@ public class OeuvreService {
         }
 
 
+
         Oeuvre oeuvre;
         oeuvre = new Oeuvre (oeuvreQuery.getOeuvreId(), categery,  authors, oeuvreQuery.getTitreOeuvre(), oeuvreQuery.getTitrePopulaire(),
                 oeuvreQuery.getTitre(), oeuvreQuery.getDispo_oeuvre(),
-              oeuvreQuery.getPdfOeuvre(), oeuvreQuery.getPremierVers(), theme, oeuvreQuery.getPresentation(),
+              oeuvreQuery.getIsPdfOeuvre(), oeuvreQuery.getPremierVers(), theme, oeuvreQuery.getPresentation(),
                 diwan, oeuvreQuery.getDiwanPage(), oeuvreQuery.getGenre(), oeuvreQuery.getNbVers(), oeuvreQuery.getAcrostiche(), oeuvreQuery.getMetriqueNom(), oeuvreQuery.getRime(),
                 oeuvreQuery.getPeriode(), oeuvreQuery.getPeriodeDatation(), oeuvreQuery.getPeriodeLieu(), oeuvreQuery.getPeriodeRques(), oeuvreQuery.getAuthenticite_degre(), oeuvreQuery.getFormeRques(),
                 oeuvreQuery.getAvantages(), oeuvreQuery.getModesLecture(), oeuvreQuery.getEdition(), oeuvreQuery.getUrlOeuvre(), oeuvreQuery.getAchatOnline(),  oeuvreQuery.getRemarques(),
