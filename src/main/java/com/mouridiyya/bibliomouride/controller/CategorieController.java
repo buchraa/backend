@@ -28,6 +28,11 @@ public class CategorieController {
     public List<Categorie> getCategories() {
         return categoryService.getCategories();
     }
+    
+    @GetMapping("/Module/Categories/{ModuleId}")
+    public List<Categorie> getCategoriesForModule(@PathVariable long id) {
+        return categoryService.getCategoriesForModule(id);
+    }
 
     @PostMapping("/addOrUpdateCategory")
     @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")

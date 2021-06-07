@@ -37,6 +37,13 @@ public class CategoryService {
         log.info("Connecting to DB...");
         return Lists.newArrayList(categoryRepository.findAll());
     }
+    
+    
+    @Cacheable(cacheNames="findAllCategory")
+    public List<Categorie> getCategoriesForModule(long id) {
+        
+        return Lists.newArrayList(categoryRepository.findByModuleId(id));
+    }
 
     @Caching(evict = {
             @CacheEvict(value = "findAllCategory", allEntries = true),
