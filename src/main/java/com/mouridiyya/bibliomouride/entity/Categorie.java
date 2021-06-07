@@ -39,13 +39,6 @@ public class Categorie {
     @JsonManagedReference
     private List<CategorieTraduction> traductions = Lists.newArrayList();
 
-    @OneToMany(
-            mappedBy = "category",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @JsonManagedReference
-    private List<Oeuvre> oeuvres = Lists.newArrayList();
 
     public Categorie(Long categoryId, String name, Boolean isAvailable) {
         this.categoryId = categoryId;
