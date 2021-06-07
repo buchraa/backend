@@ -41,6 +41,18 @@ public class CategorieController {
         return categoryService.addUpdateCategoryTraduction(categoryTraductionQueryQuery);
     }
 
+    @GetMapping("/Categorie/{id}")
+    public ResponseEntity<Categorie> getCategorie(@PathVariable long id) {
+        try {
+            Categorie categorie = categoryService.get(id);
+            return new ResponseEntity<>(categorie, HttpStatus.OK);
+        }
+        catch (NoSuchElementException e)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/Categorie/ByName/{name}")
     public ResponseEntity<Categorie> getCategoryByName(@PathVariable String name) {
         try {
@@ -53,17 +65,7 @@ public class CategorieController {
         }
     }
 
-    @GetMapping("/Categorie/{id}")
-    public ResponseEntity<Categorie> getCategorie(@PathVariable long id) {
-        try {
-            Categorie categorie = categoryService.get(id);
-            return new ResponseEntity<>(categorie, HttpStatus.OK);
-        }
-        catch (NoSuchElementException e)
-        {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+
 
     @DeleteMapping("/Categorie/{id}")
     @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")

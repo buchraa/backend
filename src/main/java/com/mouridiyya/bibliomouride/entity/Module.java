@@ -35,6 +35,14 @@ public class Module {
     @JsonManagedReference
     private List<ModuleTraduction> traductions = Lists.newArrayList();
 
+    @OneToMany(
+            mappedBy = "module",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<Categorie> categories = Lists.newArrayList();
+
     public Module(Long moduleId, String name, Boolean isAvailable) {
         this.moduleId = moduleId;
         this.name = name;
