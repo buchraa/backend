@@ -140,14 +140,6 @@ public class Oeuvre {
     private List<OeuvreTraduction> traductions = Lists.newArrayList();
 
 
-    @OneToMany(
-            mappedBy = "oeuvre",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @JsonManagedReference
-    private List<Vers> vers = Lists.newArrayList();
-
     public Oeuvre(Long oeuvreId, Categorie category, Set<Author> authors, String titreOeuvre, String titrePopulaire, String titre,
                   Boolean dispo_oeuvre, Boolean isPdfOeuvre, String premierVers, Theme themePrincipal, String presentation, Diwan diwanOrigine,
                   String diwanPage, String genre, Integer nbVers, String acrostiche, String metriqueNom, String rime, String periode,
