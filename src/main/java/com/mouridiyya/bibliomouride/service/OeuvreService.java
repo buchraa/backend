@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -48,13 +49,17 @@ public class OeuvreService {
     }
 
     
-    public List<Oeuvre> getOeuvresForCategory(Integer pageNo, Integer pageSize, long categoryId) {        
+    public List<Oeuvre> getOeuvresForCategory(long categoryId, Integer pageNo, Integer pageSize) {        
         
     	Pageable paging = PageRequest.of(pageNo, pageSize);
     	
-    	Page<Oeuvre> pageResult = oeuvreRepository.findByCategoryId(categoryId, paging);
+    	Page<Oeuvre> pagedResult = oeuvreRepository.findByCategoryId(categoryId, paging);
     	
-    	return Lists.newArrayList(oeuvreRepository.findByCategoryId(categoryId));
+    	if(pagedResult.hasContent()) {
+            return pagedResult.getContent();
+        } else {
+        	return new ArrayList<Oeuvre>();
+        }
     }
 
     @Caching(evict = {
