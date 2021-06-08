@@ -27,7 +27,7 @@ public class OeuvreController {
     public List<Oeuvre> getOeuvres(
             @RequestParam(defaultValue = "0") Integer pageNo, 
             @RequestParam(defaultValue = "3") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy) 
+            @RequestParam(defaultValue = "OeuvreId") String sortBy) 
     {   
     		 return  oeuvreService.getOeuvres(pageNo, pageSize, sortBy);  
     }
