@@ -6,6 +6,7 @@ import com.mouridiyya.bibliomouride.entity.Oeuvre;
 import com.mouridiyya.bibliomouride.model.OeuvreQuery;
 import com.mouridiyya.bibliomouride.service.OeuvreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,9 +24,15 @@ public class OeuvreController {
     private OeuvreService oeuvreService;
 
     @GetMapping("/oeuvres")
-    public List<Oeuvre> getOeuvres() {
-        return oeuvreService.getOeuvres();
+    public List<Oeuvre> getOeuvres(
+            @RequestParam(defaultValue = "0") Integer pageNo, 
+            @RequestParam(defaultValue = "3") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy) 
+    {   
+    		 return  oeuvreService.getOeuvres(pageNo, pageSize, sortBy);  
     }
+    
+    
     
     @GetMapping("/OeuvresForCategory/{categoryId}")
     public List<Oeuvre> getOeuvresForCategory(@RequestParam(defaultValue = "0") Integer pageNo,
@@ -61,5 +68,13 @@ public class OeuvreController {
         {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+    
+    @GetMapping("/oeuvres/query")
+    public List<Oeuvre> queryOeuvres(
+            @RequestParam String titre, 
+            @RequestParam String titreOeuvre) 
+    {   
+    		 return  oeuvreService.queryOeuvres(titre, titreOeuvre);  
     }
 }

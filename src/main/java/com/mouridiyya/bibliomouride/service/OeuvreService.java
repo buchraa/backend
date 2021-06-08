@@ -13,6 +13,7 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -47,8 +48,18 @@ public class OeuvreService {
     
     
     @Cacheable(cacheNames="findAllOeuvre")
-    public List<Oeuvre> getOeuvres() {
-        return Lists.newArrayList(oeuvreRepository.findAll());
+    public List<Oeuvre> getOeuvres(Integer pageNo, Integer pageSize, String sortBy) 
+    
+    {
+    	Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    	
+    	Page<Oeuvre> pagedResult = oeuvreRepository.findAll(paging);
+    	
+    	if(pagedResult.hasContent()) {
+            return pagedResult.getContent();
+        } else {
+        	return new ArrayList<Oeuvre>();
+        }
     }
 
     @Cacheable(cacheNames="findOeuvresForCategories")
@@ -171,5 +182,13 @@ public class OeuvreService {
 
         return oeuvreTraductionRepository.save(toSave);
 
+    }
+    ;
+    
+   
+    public List<Oeuvre> queryOeuvres(String titre, String titreOeuvre) 
+    
+    {
+    	return oeuvreRepository.findByTitreOrTitreOeuvre(titre, titreOeuvre);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,5 +21,9 @@ public interface OeuvreRepository extends PagingAndSortingRepository<Oeuvre, Lon
    
    @Query("select o from Oeuvre o where o.category.categoryId = ?1")
    Page<Oeuvre> findByCategoryId(Long categoryId, Pageable pageable);
+   
+   @Query("select o from Oeuvre o where o.titre like %:titre% or o.titreOeuvre like %:titreOeuvre%")
+  List <Oeuvre> findByTitreOrTitreOeuvre(@Param("titre") String titre,
+                                  @Param("titreOeuvre") String titreOeuvre);
 
 }
