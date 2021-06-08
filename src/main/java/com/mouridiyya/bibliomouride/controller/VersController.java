@@ -1,6 +1,7 @@
 package com.mouridiyya.bibliomouride.controller;
 
 
+import com.mouridiyya.bibliomouride.entity.Oeuvre;
 import com.mouridiyya.bibliomouride.entity.Vers;
 import com.mouridiyya.bibliomouride.model.VersQuery;
 import com.mouridiyya.bibliomouride.service.VersService;
@@ -27,6 +28,11 @@ public class VersController {
         return versService.getVers();
     }
 
+    @GetMapping("/VersForOeuvre/{oeuvreId}")
+    public List<Vers> getVersForOeuvre(@PathVariable long oeuvreId) {
+        return versService.getVersForOeuvre(oeuvreId);
+    }
+    
     @PostMapping("/addOrUpdateVers")
     @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
     public Vers addOrUpdateVers(@RequestBody VersQuery versQuery) {

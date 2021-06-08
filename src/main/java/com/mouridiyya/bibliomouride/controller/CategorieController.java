@@ -29,7 +29,7 @@ public class CategorieController {
         return categoryService.getCategories();
     }
     
-    @GetMapping("/Module/Categories/{moduleId}")
+    @GetMapping("/CategoriesForModule/{moduleId}")
     public List<Categorie> getCategoriesForModule(@PathVariable long moduleId) {
         return categoryService.getCategoriesForModule(moduleId);
     }

@@ -40,6 +40,10 @@ public class VersService {
         log.info("Connecting to DB...");
         return Lists.newArrayList(versRepository.findAll());
     }
+    
+    public List<Vers> getVersForOeuvre(long oeuvreId) {        
+        return Lists.newArrayList(versRepository.findByOeuvreId(oeuvreId));
+    }
 
 
     public Vers addUpdateVers(VersQuery q) {

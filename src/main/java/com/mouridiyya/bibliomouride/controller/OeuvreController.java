@@ -26,6 +26,11 @@ public class OeuvreController {
     public List<Oeuvre> getOeuvres() {
         return oeuvreService.getOeuvres();
     }
+    
+    @GetMapping("/OeuvresForCategory/{categoryId}")
+    public List<Oeuvre> getOeuvresForCategory(@PathVariable long categoryId) {
+        return oeuvreService.getOeuvresForCategory(categoryId);
+    }
 
     @PostMapping("/addOrUpdateOeuvre")
     @PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")

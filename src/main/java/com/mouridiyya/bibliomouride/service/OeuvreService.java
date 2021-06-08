@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -44,6 +47,15 @@ public class OeuvreService {
         return Lists.newArrayList(oeuvreRepository.findAll());
     }
 
+    
+    public List<Oeuvre> getOeuvresForCategory(Integer pageNo, Integer pageSize, long categoryId) {        
+        
+    	Pageable paging = PageRequest.of(pageNo, pageSize);
+    	
+    	Page<Oeuvre> pageResult = oeuvreRepository.findByCategoryId(categoryId, paging);
+    	
+    	return Lists.newArrayList(oeuvreRepository.findByCategoryId(categoryId));
+    }
 
     @Caching(evict = {
             @CacheEvict(value = "findAllOeuvre", allEntries = true),
