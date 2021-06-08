@@ -28,8 +28,9 @@ public class OeuvreController {
     }
     
     @GetMapping("/OeuvresForCategory/{categoryId}")
-    public List<Oeuvre> getOeuvresForCategory(@PathVariable long categoryId) {
-        return oeuvreService.getOeuvresForCategory(categoryId);
+    public List<Oeuvre> getOeuvresForCategory(@RequestParam(defaultValue = "0") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize,
+            								  @PathVariable long categoryId) {
+        return oeuvreService.getOeuvresForCategory(pageNo, pageSize, categoryId);
     }
 
     @PostMapping("/addOrUpdateOeuvre")
