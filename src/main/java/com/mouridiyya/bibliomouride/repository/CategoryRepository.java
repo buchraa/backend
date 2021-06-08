@@ -2,6 +2,7 @@ package com.mouridiyya.bibliomouride.repository;
 
 
 import com.mouridiyya.bibliomouride.entity.Categorie;
+import com.mouridiyya.bibliomouride.entity.Module;
 
 
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,6 @@ public interface CategoryRepository extends CrudRepository<Categorie, Long> {
     Optional<Categorie> findByCategoryId(Long categoryId);
     Optional<Categorie> findByName(String name);
     
-    @Query("select c from Categorie c where c.moduleId = ?1")
-    List<Categorie> findByModuleId(Long ModuleId);
+    @Query("select c from Categorie c where c.module.moduleId = ?1")
+    List<Categorie> findByModuleId(Long moduleId);
 }

@@ -29,9 +29,9 @@ public class CategorieController {
         return categoryService.getCategories();
     }
     
-    @GetMapping("/Module/Categories/{ModuleId}")
-    public List<Categorie> getCategoriesForModule(@PathVariable long id) {
-        return categoryService.getCategoriesForModule(id);
+    @GetMapping("/Module/Categories/{moduleId}")
+    public List<Categorie> getCategoriesForModule(@PathVariable long moduleId) {
+        return categoryService.getCategoriesForModule(moduleId);
     }
 
     @PostMapping("/addOrUpdateCategory")

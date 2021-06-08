@@ -40,9 +40,9 @@ public class CategoryService {
     
     
     @Cacheable(cacheNames="findAllCategory")
-    public List<Categorie> getCategoriesForModule(long id) {
+    public List<Categorie> getCategoriesForModule(long moduleId) {
         
-        return Lists.newArrayList(categoryRepository.findByModuleId(id));
+        return Lists.newArrayList(categoryRepository.findByModuleId(moduleId));
     }
 
     @Caching(evict = {
