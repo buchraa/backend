@@ -72,9 +72,9 @@ public class OeuvreController {
     
     @GetMapping("/oeuvres/query")
     public List<Oeuvre> queryOeuvres(
-            @RequestParam String titre, 
-            @RequestParam String titreOeuvre) 
+            @RequestParam String titre 
+           ) 
     {   
-    		 return  oeuvreService.queryOeuvres(titre, titreOeuvre);  
+    		 return  oeuvreService.queryOeuvres(titre);  
     }
 }

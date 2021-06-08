@@ -186,9 +186,9 @@ public class OeuvreService {
     ;
     
    
-    public List<Oeuvre> queryOeuvres(String titre, String titreOeuvre) 
+    public List<Oeuvre> queryOeuvres(String titre) 
     
     {
-    	return oeuvreRepository.findByTitreOrTitreOeuvre(titre, titreOeuvre);
+    	return oeuvreRepository.findByTitreOrTitreOeuvre(titre);
     }
 }
