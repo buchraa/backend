@@ -13,8 +13,15 @@ import com.mouridiyya.bibliomouride.repository.VersRepository;
 import com.mouridiyya.bibliomouride.repository.VersTraductionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,16 +42,28 @@ public class VersService {
     private VersTraductionRepository versTraductionRepository;
 
 
-
+    @Cacheable(cacheNames="findAllVers")
     public List<Vers> getVers() {
         log.info("Connecting to DB...");
         return Lists.newArrayList(versRepository.findAll());
     }
     
-    public List<Vers> getVersForOeuvre(long oeuvreId) {        
-        return Lists.newArrayList(versRepository.findByOeuvreId(oeuvreId));
+    
+    @Cacheable(cacheNames="findVersForOeuvre")
+    public List<Vers> getVersForOeuvre(long oeuvreId, Integer pageNo, Integer pageSize) {    
+    	Pageable paging = PageRequest.of(pageNo, pageSize);
+    	Page<Vers> pagedResult = versRepository.findByOeuvreId(oeuvreId, paging);
+    	if(pagedResult.hasContent()) {
+            return pagedResult.getContent();
+        } else {
+        	return new ArrayList<Vers>();
+        }
     }
 
+    
+    @Caching(evict = {
+            @CacheEvict(value = "findAllVers", allEntries = true),
+            @CacheEvict(value = "findVersById", allEntries = true)})
 
     public Vers addUpdateVers(VersQuery q) {
 
@@ -71,6 +90,7 @@ public class VersService {
         return versRepository.save(toSave);
     }
 
+    @Cacheable(cacheNames = "findVersById")
     public Vers get(long id) {
         log.info("Connecting to DB...");
         return versRepository.findById(id).get();

@@ -44,11 +44,14 @@ public class OeuvreService {
     @Autowired
     private OeuvreTraductionRepository oeuvreTraductionRepository;
 
+    
+    
+    @Cacheable(cacheNames="findAllOeuvre")
     public List<Oeuvre> getOeuvres() {
         return Lists.newArrayList(oeuvreRepository.findAll());
     }
 
-    
+    @Cacheable(cacheNames="findOeuvresForCategories")
     public List<Oeuvre> getOeuvresForCategory(long categoryId, Integer pageNo, Integer pageSize) {        
         
     	Pageable paging = PageRequest.of(pageNo, pageSize);

@@ -28,8 +28,10 @@ public class OeuvreController {
     }
     
     @GetMapping("/OeuvresForCategory/{categoryId}")
-    public List<Oeuvre> getOeuvresForCategory(@RequestParam(defaultValue = "0") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize,
-            								  @PathVariable long categoryId) {
+    public List<Oeuvre> getOeuvresForCategory(@RequestParam(defaultValue = "0") Integer pageNo,
+    										  @RequestParam(defaultValue = "2") Integer pageSize,
+            								  @PathVariable long categoryId) 
+    {
         return oeuvreService.getOeuvresForCategory(categoryId, pageNo, pageSize);
     }
 

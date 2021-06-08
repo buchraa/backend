@@ -132,7 +132,25 @@
             <heap unit="MB">500</heap>
         </resources>
     </cache>
-
+    <cache alias="findAllVers">
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">60</ttl>
+        </expiry>
+        <resources>
+            <heap unit="MB">500</heap>
+        </resources>
+    </cache>
+    <cache alias="findVersById">
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.mouridiyya.bibliomouride.entity.Vers</value-type>
+        <expiry>
+            <ttl unit="minutes">60</ttl>
+        </expiry>
+        <resources>
+            <heap unit="MB">500</heap>
+        </resources>
+    </cache>
     <cache alias="findAllVersTraduction">
         <value-type>java.util.List</value-type>
         <expiry>
@@ -145,6 +163,24 @@
     <cache alias="findVersTraductionById">
         <key-type>java.lang.Long</key-type>
         <value-type>com.mouridiyya.bibliomouride.entity.VersTraduction</value-type>
+        <expiry>
+            <ttl unit="minutes">60</ttl>
+        </expiry>
+        <resources>
+            <heap unit="MB">500</heap>
+        </resources>
+    </cache>    
+    <cache alias="findOeuvresForCategories">
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">60</ttl>
+        </expiry>
+        <resources>
+            <heap unit="MB">500</heap>
+        </resources>
+    </cache>
+     <cache alias="findVersForOeuvre">
+        <value-type>java.util.List</value-type>
         <expiry>
             <ttl unit="minutes">60</ttl>
         </expiry>
