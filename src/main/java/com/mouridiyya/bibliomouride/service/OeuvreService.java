@@ -63,17 +63,15 @@ public class OeuvreService {
     }
 
     @Cacheable(cacheNames="findOeuvresForCategories")
-    public List<Oeuvre> getOeuvresForCategory(long categoryId, Integer pageNo, Integer pageSize) {        
+    public Page<Oeuvre> getOeuvresForCategory(long categoryId, Integer pageNo, Integer pageSize) {        
         
     	Pageable paging = PageRequest.of(pageNo, pageSize);
     	
     	Page<Oeuvre> pagedResult = oeuvreRepository.findByCategoryId(categoryId, paging);
     	
-    	if(pagedResult.hasContent()) {
-            return pagedResult.getContent();
-        } else {
-        	return new ArrayList<Oeuvre>();
-        }
+    	
+       return (pagedResult);
+        
     }
 
     @Caching(evict = {
