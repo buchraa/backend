@@ -51,14 +51,12 @@ public class VersService {
     
     
     @Cacheable(cacheNames="findVersForOeuvre")
-    public List<Vers> getVersForOeuvre(long oeuvreId, Integer pageNo, Integer pageSize, String sortBy) {    
+    public Page<Vers> getVersForOeuvre(long oeuvreId, Integer pageNo, Integer pageSize, String sortBy) {    
     	Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
     	Page<Vers> pagedResult = versRepository.findByOeuvreId(oeuvreId, paging);
-    	if(pagedResult.hasContent()) {
-            return pagedResult.getContent();
-        } else {
-        	return new ArrayList<Vers>();
-        }
+    	
+            return pagedResult;
+        
     }
 
     
