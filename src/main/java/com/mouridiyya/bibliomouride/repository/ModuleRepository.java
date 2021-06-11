@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface ModuleRepository extends CrudRepository<Module, Long> {
     Optional<Module> findByModuleId(Long moduleId);
     Optional<Module> findByName(String name);
+    
+    
 }

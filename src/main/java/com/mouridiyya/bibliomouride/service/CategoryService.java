@@ -39,7 +39,7 @@ public class CategoryService {
     }
     
     
-    @Cacheable(cacheNames="findAllCategory")
+    
     public List<Categorie> getCategoriesForModule(long moduleId) {
         
         return Lists.newArrayList(categoryRepository.findByModuleId(moduleId));

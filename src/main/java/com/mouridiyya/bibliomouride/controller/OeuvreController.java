@@ -40,7 +40,9 @@ public class OeuvreController {
     										  @RequestParam(defaultValue = "2") Integer pageSize,
             								  @PathVariable long categoryId) 
     {
-        return oeuvreService.getOeuvresForCategory(categoryId, pageNo, pageSize);
+    	
+    		return oeuvreService.getOeuvresForCategory(categoryId, pageNo, pageSize);
+    	
     }
 
     @PostMapping("/addOrUpdateOeuvre")
