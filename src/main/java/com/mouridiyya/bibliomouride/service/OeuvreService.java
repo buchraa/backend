@@ -63,9 +63,9 @@ public class OeuvreService {
     }
 
     @Cacheable(cacheNames="findOeuvresForCategories")
-    public Page<Oeuvre> getOeuvresForCategory(long categoryId, Integer pageNo, Integer pageSize, String sortBy) {        
+    public Page<Oeuvre> getOeuvresForCategory(long categoryId, Integer pageNo, Integer pageSize) {        
         
-    	Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    	Pageable paging = PageRequest.of(pageNo, pageSize);
     	
     	Page<Oeuvre> pagedResult = oeuvreRepository.findByCategoryId(categoryId, paging);    	
     	

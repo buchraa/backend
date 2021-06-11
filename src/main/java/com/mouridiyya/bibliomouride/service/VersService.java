@@ -19,6 +19,7 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,8 +51,8 @@ public class VersService {
     
     
     @Cacheable(cacheNames="findVersForOeuvre")
-    public List<Vers> getVersForOeuvre(long oeuvreId, Integer pageNo, Integer pageSize) {    
-    	Pageable paging = PageRequest.of(pageNo, pageSize);
+    public List<Vers> getVersForOeuvre(long oeuvreId, Integer pageNo, Integer pageSize, String sortBy) {    
+    	Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
     	Page<Vers> pagedResult = versRepository.findByOeuvreId(oeuvreId, paging);
     	if(pagedResult.hasContent()) {
             return pagedResult.getContent();
