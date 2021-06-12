@@ -51,7 +51,7 @@ public class VersService {
     
     
     @Cacheable(cacheNames="findVersForOeuvre")
-    public List<Vers> getVersForOeuvre(long oeuvreId, String sortBy) {    
+    public List<Vers> getVersForOeuvre(long oeuvreId) {    
     	Sort sortOrder = Sort.by("versId"); 
     	List<Vers> pagedResult = versRepository.findByOeuvreId(oeuvreId, sortOrder);
     	

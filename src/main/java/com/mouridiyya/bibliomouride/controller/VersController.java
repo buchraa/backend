@@ -29,10 +29,9 @@ public class VersController {
     }
 
     @GetMapping("/VersForOeuvre/{oeuvreId}")
-    public List<Vers> getVersForOeuvre( @PathVariable long oeuvreId,
-    		 @RequestParam(defaultValue = "versId") String sortBy) 
+    public List<Vers> getVersForOeuvre( @PathVariable long oeuvreId) 
     {
-        return versService.getVersForOeuvre(oeuvreId, sortBy);
+        return versService.getVersForOeuvre(oeuvreId);
     }
     
     @PostMapping("/addOrUpdateVers")
