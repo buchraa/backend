@@ -51,10 +51,13 @@ public class VersService {
     
     
     @Cacheable(cacheNames="findVersForOeuvre")
-    public List<Vers> getVersForOeuvre(long oeuvreId) {      	
-    	List<Vers> vers = versRepository.findByOeuvreId(oeuvreId);    	
-            return vers;
-        }
+    public Page<Vers> getVersForOeuvre(long oeuvreId, String sortBy) {    
+    	Sort sortOrder = Sort.by("versId"); 
+    	Page<Vers> pagedResult = versRepository.findByOeuvreId(oeuvreId, sortOrder);
+    	
+            return pagedResult;
+       
+    }
 
     
     @Caching(evict = {

@@ -6,6 +6,7 @@ import com.mouridiyya.bibliomouride.entity.Vers;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -18,5 +19,5 @@ public interface VersRepository extends CrudRepository<Vers, Long> {
     
     
     @Query("select v from Vers v where v.oeuvre.oeuvreId = ?1")
-    List<Vers> findByOeuvreId(Long oeuvreId);
+    Page<Vers> findByOeuvreId(Long oeuvreId, Sort sort);
 }
