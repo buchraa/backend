@@ -18,5 +18,5 @@ public interface VersRepository extends CrudRepository<Vers, Long> {
     
     
     @Query("select v from Vers v where v.oeuvre.oeuvreId = ?1")
-    Page<Vers> findByOeuvreId(Long oeuvreId, Pageable pageable);
+    List<Vers> findByOeuvreId(Long oeuvreId);
 }

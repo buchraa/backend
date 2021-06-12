@@ -30,12 +30,9 @@ public class VersController {
     }
 
     @GetMapping("/VersForOeuvre/{oeuvreId}")
-    public Page<Vers> getVersForOeuvre(@RequestParam(defaultValue = "0") Integer pageNo,
-			  						   @RequestParam(defaultValue = "2") Integer pageSize,
-			  						   @RequestParam(defaultValue = "versId") String sortBy,
-			  						   @PathVariable long oeuvreId) 
+    public List<Vers> getVersForOeuvre(@PathVariable long oeuvreId) 
     {
-        return versService.getVersForOeuvre(oeuvreId, pageNo, pageSize, sortBy);
+        return versService.getVersForOeuvre(oeuvreId);
     }
     
     @PostMapping("/addOrUpdateVers")
