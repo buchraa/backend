@@ -48,18 +48,20 @@ public class OeuvreService {
     
     
     @Cacheable(cacheNames="findAllOeuvre")
-    public List<Oeuvre> getOeuvres(Integer pageNo, Integer pageSize, String sortBy) 
+    public Page<Oeuvre> getOeuvres(Integer pageNo, Integer pageSize, String sortBy) 
     
     {
     	Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
     	
     	Page<Oeuvre> pagedResult = oeuvreRepository.findAll(paging);
     	
-    	if(pagedResult.hasContent()) {
+    	return pagedResult;
+    	
+    	/*if(pagedResult.hasContent()) {
             return pagedResult.getContent();
         } else {
         	return new ArrayList<Oeuvre>();
-        }
+        }*/
     }
 
     @Cacheable(cacheNames="findOeuvresForCategories")

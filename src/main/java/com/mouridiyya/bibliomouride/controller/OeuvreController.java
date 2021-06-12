@@ -25,9 +25,9 @@ public class OeuvreController {
     private OeuvreService oeuvreService;
 
     @GetMapping("/oeuvres")
-    public List<Oeuvre> getOeuvres(
+    public Page<Oeuvre> getOeuvres(
             @RequestParam(defaultValue = "0") Integer pageNo, 
-            @RequestParam(defaultValue = "3") Integer pageSize,
+            @RequestParam(defaultValue = "8") Integer pageSize,
             @RequestParam(defaultValue = "OeuvreId") String sortBy) 
     {   
     		 return  oeuvreService.getOeuvres(pageNo, pageSize, sortBy);  
@@ -37,7 +37,7 @@ public class OeuvreController {
     
     @GetMapping("/OeuvresForCategory/{categoryId}")
     public Page<Oeuvre> getOeuvresForCategory(@RequestParam(defaultValue = "0") Integer pageNo,
-    										  @RequestParam(defaultValue = "2") Integer pageSize,
+    										  @RequestParam(defaultValue = "8") Integer pageSize,
             								  @PathVariable long categoryId) 
     {
     	
