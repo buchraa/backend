@@ -63,6 +63,13 @@ public class OeuvreService {
         	return new ArrayList<Oeuvre>();
         }*/
     }
+    
+    
+    public List<Oeuvre> manageOeuvres() 
+    
+    {
+    	return Lists.newArrayList(oeuvreRepository.findAll());
+    }
 
     @Cacheable(cacheNames="findOeuvresForCategories")
     public Page<Oeuvre> getOeuvresForCategory(long categoryId, Integer pageNo, Integer pageSize) {        
