@@ -6,8 +6,6 @@ import com.mouridiyya.bibliomouride.entity.Vers;
 import com.mouridiyya.bibliomouride.model.VersQuery;
 import com.mouridiyya.bibliomouride.service.VersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,10 +29,10 @@ public class VersController {
     }
 
     @GetMapping("/VersForOeuvre/{oeuvreId}")
-    public List<Vers> getVersForOeuvre(@PathVariable long oeuvreId) 
+    public List<Vers> getVersForOeuvre( @PathVariable long oeuvreId,
+    		 @RequestParam(defaultValue = "versId") String sortBy) 
     {
-    	Sort sortOrder = Sort.by("versId"); 
-        return versService.getVersForOeuvre(oeuvreId);
+        return versService.getVersForOeuvre(oeuvreId, sortBy);
     }
     
     @PostMapping("/addOrUpdateVers")
