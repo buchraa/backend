@@ -44,9 +44,11 @@ public class VersService {
 
 
     @Cacheable(cacheNames="findAllVers")
-    public List<Vers> getVers() {
+    public Page<Vers> getVers(Integer pageNo, Integer pageSize, String sortBy) {
+    	Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    	Page<Vers> pageResult = versRepository.findAll(paging);
         log.info("Connecting to DB...");
-        return Lists.newArrayList(versRepository.findAll());
+        return pageResult;
     }
     
     
