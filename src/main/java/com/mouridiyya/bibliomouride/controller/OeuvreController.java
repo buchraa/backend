@@ -34,6 +34,12 @@ public class OeuvreController {
     }
     
     
+    @GetMapping("/manageoeuvres")
+    public List<Oeuvre> getOeuvres() 
+    {   
+    		 return  oeuvreService.manageOeuvres();  
+    }
+    
     
     @GetMapping("/OeuvresForCategory/{categoryId}")
     public Page<Oeuvre> getOeuvresForCategory(@RequestParam(defaultValue = "0") Integer pageNo,
