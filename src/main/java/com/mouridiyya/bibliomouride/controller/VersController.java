@@ -32,6 +32,12 @@ public class VersController {
         return versService.getVers(pageNo, pageSize, sortBy);
     }
 
+    @GetMapping("/managevers")
+    public List<Vers> getVers()
+    {
+        return  versService.manageVers();
+    }
+
     @GetMapping("/VersForOeuvre/{oeuvreId}")
     public List<Vers> getVersForOeuvre( @PathVariable long oeuvreId) 
     {
