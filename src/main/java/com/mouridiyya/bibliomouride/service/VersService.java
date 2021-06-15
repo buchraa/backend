@@ -50,9 +50,14 @@ public class VersService {
         log.info("Connecting to DB...");
         return pageResult;
     }
-    
-    
-    
+
+    public List<Vers> manageVers()
+
+    {
+        return Lists.newArrayList(versRepository.findAll());
+    }
+
+
     @Cacheable(cacheNames="findVersForOeuvre")
     public List<Vers> getVersForOeuvre(long oeuvreId) {    
     	Sort sortOrder = Sort.by("versId"); 
