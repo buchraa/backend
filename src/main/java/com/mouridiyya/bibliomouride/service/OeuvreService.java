@@ -65,8 +65,7 @@ public class OeuvreService {
     }
 
     
-   public List<Oeuvre> manageOeuvres()
-
+    public List<Oeuvre> manageOeuvres()
     
     {
     	return Lists.newArrayList(oeuvreRepository.findAll());
