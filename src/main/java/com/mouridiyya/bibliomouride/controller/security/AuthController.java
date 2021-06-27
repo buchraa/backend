@@ -70,7 +70,9 @@ public class AuthController {
 		}
 		catch (NoSuchElementException e)
 		{
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return  ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Error: Username is already taken!"));
 		}
 	}
 
