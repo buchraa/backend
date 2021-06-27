@@ -51,6 +51,7 @@ public class AuthController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser( @RequestBody LoginRequest loginRequest) {
 
+
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
@@ -61,19 +62,28 @@ public class AuthController {
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-		try {
+
+
+
+		if (userRepository.existsByUsername(loginRequest.getUsername())) {
+
 			return ResponseEntity.ok(new JwtResponse(jwt,
 					userDetails.getId(),
 					userDetails.getUsername(),
 					userDetails.getEmail(),
 					roles));
 		}
-		catch (NoSuchElementException e)
-		{
-			return  ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Error: Username is already taken!"));
+		if (userRepository.existsByEmail(loginRequest.getEmail())) {
+			return ResponseEntity.ok(new JwtResponse(jwt,
+					userDetails.getId(),
+					userDetails.getUsername(),
+					userDetails.getEmail(),
+					roles));
 		}
+		return ResponseEntity
+				.badRequest()
+				.body(new MessageResponse("Error: Identifiants incorrects"));
+
 	}
 
 	@PostMapping("/signup")
