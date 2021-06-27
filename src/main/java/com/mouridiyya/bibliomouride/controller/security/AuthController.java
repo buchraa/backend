@@ -73,13 +73,7 @@ public class AuthController {
 					userDetails.getEmail(),
 					roles));
 		}
-		if (userRepository.existsByEmail(loginRequest.getEmail())) {
-			return ResponseEntity.ok(new JwtResponse(jwt,
-					userDetails.getId(),
-					userDetails.getUsername(),
-					userDetails.getEmail(),
-					roles));
-		}
+
 		return ResponseEntity
 				.badRequest()
 				.body(new MessageResponse("Error: Identifiants incorrects"));
