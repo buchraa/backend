@@ -48,36 +48,31 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 
+
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser( @RequestBody LoginRequest loginRequest) {
-
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
-		
+
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-
-
-
-		if (userRepository.existsByUsername(loginRequest.getUsername())) {
-
+		try {
 			return ResponseEntity.ok(new JwtResponse(jwt,
 					userDetails.getId(),
 					userDetails.getUsername(),
 					userDetails.getEmail(),
 					roles));
 		}
-
-		return ResponseEntity
-				.badRequest()
-				.body(new MessageResponse("Error: Identifiants incorrects"));
-
+		catch (NoSuchElementException e)
+		{
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@PostMapping("/signup")
