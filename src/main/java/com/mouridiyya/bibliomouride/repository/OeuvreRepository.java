@@ -23,12 +23,10 @@ public interface OeuvreRepository extends PagingAndSortingRepository<Oeuvre, Lon
    Page<Oeuvre> findByCategoryId(Long categoryId, Pageable pageable);
    
    @Query("select o from Oeuvre o where LOWER(o.titre) like %?1% or LOWER(o.titreOeuvre) like %?1% or LOWER(o.titrePopulaire) like %?1%")
-<<<<<<< HEAD
+
   List <Oeuvre> findByTitreOrTitreOeuvre(String titre);
    
    
-=======
-   List <Oeuvre> findByTitreOrTitreOeuvre(String titre);
->>>>>>> b9e201b596f20b5589149cf4bf2806a25756fd0b
+
 
 }
