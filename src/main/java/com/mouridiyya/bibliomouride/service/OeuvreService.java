@@ -14,8 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -44,6 +46,10 @@ public class OeuvreService {
 
     @Autowired
     private OeuvreTraductionRepository oeuvreTraductionRepository;
+
+
+    @Autowired
+    private OeuvreGeneralViewRepository oeuvreGeneralViewRepository;
 
     
     
@@ -199,4 +205,34 @@ public class OeuvreService {
     {
     	return oeuvreRepository.findByTitreOrTitreOeuvre(titre);
     }
+
+
+
+    public static Specification<OeuvreGeneralView> containsSearchTextInFields(String text) {
+        if (!text.contains("%")) {
+            text = "%" + text + "%";
+        }
+
+        String finalText = text !=null ? text.toLowerCase() : text;
+        return (root, query, builder) -> builder.or(
+                builder.like(builder.lower(root.get("acrostiche")), finalText),
+                builder.like(builder.lower(root.get("titre")), finalText),
+                builder.like(builder.lower(root.get("titreOeuvre")), finalText),
+                builder.like(builder.lower(root.get("titrePopulaire")), finalText),
+                builder.like(builder.lower(root.get("texteVersAR1")), finalText),
+                builder.like(builder.lower(root.get("texteVersAR2")), finalText),
+                builder.like(builder.lower(root.get("texteVersAR3")), finalText),
+                builder.like(builder.lower(root.get("texteVersAR4")), finalText),
+                builder.like(builder.lower(root.get("titretrad")), finalText),
+                builder.like(builder.lower(root.get("traductiontitre")), finalText),
+                builder.like(builder.lower(root.get("premierVers")), finalText)
+        );
+    }
+
+    public Page<OeuvreGeneralView> generalsearch(String searchText, Pageable pageable)
+    {
+        return oeuvreGeneralViewRepository.findAll(containsSearchTextInFields(searchText), pageable);
+    }
+
+
 }
