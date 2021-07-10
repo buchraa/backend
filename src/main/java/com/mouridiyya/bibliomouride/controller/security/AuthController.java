@@ -210,6 +210,20 @@ public class AuthController {
 
 	}
 
+	@GetMapping("/user/{id}")
+	@PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
+	public ResponseEntity<User> getUser(@PathVariable long id) {
+		try {
+		User user = userService.get(id);
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		}
+		catch (NoSuchElementException e)
+		{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+	}
+
 	@DeleteMapping("/user/{id}")
 	@PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
 	public void delete(@PathVariable long id) {
