@@ -161,16 +161,19 @@ public class AuthController {
 	}
 
 	@PostMapping("/updateUser")
-	public User updateUserDetails(@RequestBody SignupRequest signUpRequest) {
-		User update = new User(signUpRequest.getUsername(),
-				signUpRequest.getEmail(),
-				encoder.encode(signUpRequest.getPassword()));
-
-		if( signUpRequest.getUsername()!=null && !signUpRequest.getUsername().isEmpty()){
-			Optional<User> oldUser = userRepository.findByUsername(signUpRequest.getUsername());
-			oldUser.ifPresent(user -> update.setId(user.getId()));
+	public ResponseEntity<?> updateUserDetails(@RequestBody SignupRequest signUpRequest) {
 
 
+		if( signUpRequest.getUsername()=null && signUpRequest.getUsername().isEmpty())
+
+		{
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Error: Username not found!"));
+		}
+
+
+			User oldUser = userRepository.findByUsername(signUpRequest.getUsername());
 			Set<String> strRoles = signUpRequest.getRole();
 			Set<Role> roles = new HashSet<>();
 
@@ -201,10 +204,12 @@ public class AuthController {
 				});
 			}
 
-			oldUser.setRole(roles);
+			oldUser.setRoles(roles);
 
-		}
-		return userRepository.save(update);
+
+		userRepository.save(oldUser);
+
+		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
 
 	}
