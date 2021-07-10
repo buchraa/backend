@@ -17,6 +17,7 @@ import com.mouridiyya.bibliomouride.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,10 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -136,6 +134,8 @@ public class AuthController {
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 
+
+
 	@GetMapping("/user/current")
 	public ResponseEntity<?> getCurrentUser() {
 
@@ -160,7 +160,23 @@ public class AuthController {
 
 	}
 
+	@PostMapping("/updateUser")
+	public User updateUserDetails(@RequestBody SignupRequest signUpRequest) {
+		User update =  new User( signUpRequest.getUsername(),  signUpRequest.getEmail(),  signUpRequest.getPassword(), signUpRequest.getRole());
+		if( signUpRequest.getUsername()!=null && !signUpRequest.getUsername().isEmpty()){
+			Optional<User> oldUser = userRepository.findByUsername(signUpRequest.getUsername());
+			oldUser.ifPresent(user -> update.setId(user.getId()));
+		}
+		return userRepository.save(update);
 
+
+	}
+
+	@DeleteMapping("/user/{id}")
+	@PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
+	public void delete(@PathVariable long id) {
+		userService.delete(id);
+	}
 
 	
 }
