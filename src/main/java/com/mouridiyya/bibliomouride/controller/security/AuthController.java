@@ -170,9 +170,6 @@ public class AuthController {
 		if( signUpRequest.getUsername()!=null && !signUpRequest.getUsername().isEmpty())
 
 		{
-			Optional<User> oldUser = userRepository.findByUsername(signUpRequest.getUsername());
-			oldUser.ifPresent(user -> update.setId(user.getId()));
-
 
 			Set<String> strRoles = signUpRequest.getRole();
 			Set<Role> roles = new HashSet<>();
@@ -203,8 +200,9 @@ public class AuthController {
 					}
 				});
 			}
-
-			oldUser.setRoles(roles);
+			Optional<User> oldUser = userRepository.findByUsername(signUpRequest.getUsername());
+			oldUser.ifPresent(user -> update.setId(user.getId()));
+			oldUser.ifPresent(user -> update.setRoles(roles));
 
 		}
 		return userRepository.save(update);
