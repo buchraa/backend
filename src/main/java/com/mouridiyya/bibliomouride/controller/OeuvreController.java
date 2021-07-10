@@ -38,7 +38,7 @@ public class OeuvreController {
     }
 
     @GetMapping("/manageoeuvres")
-    public List<Oeuvre> getOeuvres() 
+    public List<Oeuvre> getAllOeuvres()
     {   
     		 return  oeuvreService.manageOeuvres();  
     }
