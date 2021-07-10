@@ -201,7 +201,7 @@ public class AuthController {
 				});
 			}
 
-			oldUser.setRoles(roles);
+			oldUser.setRole(roles);
 
 		}
 		return userRepository.save(update);
