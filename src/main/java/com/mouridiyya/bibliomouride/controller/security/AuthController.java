@@ -164,7 +164,7 @@ public class AuthController {
 	public ResponseEntity<?> updateUserDetails(@RequestBody SignupRequest signUpRequest) {
 
 
-		if( signUpRequest.getUsername()=null && signUpRequest.getUsername().isEmpty())
+		if( signUpRequest.getUsername()=null || signUpRequest.getUsername().isEmpty())
 
 		{
 			return ResponseEntity
@@ -173,7 +173,7 @@ public class AuthController {
 		}
 
 
-			User oldUser = userRepository.findByUsername(signUpRequest.getUsername());
+		Optional<User> oldUser = userRepository.findByUsername(signUpRequest.getUsername());
 			Set<String> strRoles = signUpRequest.getRole();
 			Set<Role> roles = new HashSet<>();
 
