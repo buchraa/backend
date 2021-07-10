@@ -36,7 +36,6 @@ public class OeuvreController {
     {   
     		 return  oeuvreService.getOeuvres(pageNo, pageSize, sortBy);  
     }
-    
 
     @GetMapping("/manageoeuvres")
     public List<Oeuvre> getAllOeuvres()
