@@ -163,17 +163,7 @@ public class AuthController {
 	@PostMapping("/updateUser")
 	public ResponseEntity<?> updateUserDetails(@RequestBody SignupRequest signUpRequest) {
 
-
-		if( signUpRequest.getUsername()=null || signUpRequest.getUsername().isEmpty())
-
-		{
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Error: Username not found!"));
-		}
-
-
-		Optional<User> oldUser = userRepository.findByUsername(signUpRequest.getUsername());
+		User oldUser = userRepository.findByUsername(signUpRequest.getUsername());
 			Set<String> strRoles = signUpRequest.getRole();
 			Set<Role> roles = new HashSet<>();
 
