@@ -71,8 +71,6 @@ public class AuthController {
 		}
 		catch (NoSuchElementException e)
 		{
-
-
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
 		}
