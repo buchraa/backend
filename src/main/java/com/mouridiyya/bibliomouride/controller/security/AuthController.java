@@ -162,10 +162,47 @@ public class AuthController {
 
 	@PostMapping("/updateUser")
 	public User updateUserDetails(@RequestBody SignupRequest signUpRequest) {
-		User update =  new User( signUpRequest.getUsername(),  signUpRequest.getEmail(),  signUpRequest.getPassword(), signUpRequest.getRole());
+		User update = new User(signUpRequest.getUsername(),
+				signUpRequest.getEmail(),
+				encoder.encode(signUpRequest.getPassword()));
+
 		if( signUpRequest.getUsername()!=null && !signUpRequest.getUsername().isEmpty()){
 			Optional<User> oldUser = userRepository.findByUsername(signUpRequest.getUsername());
 			oldUser.ifPresent(user -> update.setId(user.getId()));
+
+
+			Set<String> strRoles = signUpRequest.getRole();
+			Set<Role> roles = new HashSet<>();
+
+			if (strRoles == null) {
+				Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+				roles.add(userRole);
+			} else {
+				strRoles.forEach(role -> {
+					switch (role) {
+						case "admin":
+							Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+									.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+							roles.add(adminRole);
+
+							break;
+						case "trad":
+							Role modRole = roleRepository.findByName(ERole.ROLE_TRANSLATOR)
+									.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+							roles.add(modRole);
+
+							break;
+						default:
+							Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+									.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+							roles.add(userRole);
+					}
+				});
+			}
+
+			oldUser.setRoles(roles);
+
 		}
 		return userRepository.save(update);
 
