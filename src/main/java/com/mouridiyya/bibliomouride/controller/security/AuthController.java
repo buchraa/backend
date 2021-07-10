@@ -71,7 +71,11 @@ public class AuthController {
 		}
 		catch (NoSuchElementException e)
 		{
+<<<<<<< HEAD
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+=======
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+>>>>>>> 1df279537a8303c633087b0f5b867f8193258839
 		}
 	}
 

@@ -3,10 +3,14 @@ package com.mouridiyya.bibliomouride.controller;
 
 import com.mouridiyya.bibliomouride.entity.Categorie;
 import com.mouridiyya.bibliomouride.entity.Oeuvre;
+import com.mouridiyya.bibliomouride.entity.OeuvreGeneralView;
 import com.mouridiyya.bibliomouride.model.OeuvreQuery;
 import com.mouridiyya.bibliomouride.service.OeuvreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +37,12 @@ public class OeuvreController {
     		 return  oeuvreService.getOeuvres(pageNo, pageSize, sortBy);  
     }
     
+<<<<<<< HEAD
   
     
+=======
+
+>>>>>>> 1df279537a8303c633087b0f5b867f8193258839
     @GetMapping("/manageoeuvres")
     public List<Oeuvre> getOeuvres() 
     {   
@@ -87,4 +95,16 @@ public class OeuvreController {
     {   
     		 return  oeuvreService.queryOeuvres(titre);  
     }
+
+    @GetMapping("/generalsearch")
+    public Page<OeuvreGeneralView> generalsearch(
+            @RequestParam String searchText,
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "8") Integer pageSize,
+            @RequestParam(defaultValue = "rownum") String sortBy)
+    {
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        return  oeuvreService.generalsearch(searchText, pageable);
+    }
+
 }
