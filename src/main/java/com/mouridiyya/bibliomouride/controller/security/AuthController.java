@@ -161,6 +161,7 @@ public class AuthController {
 	}
 
 	@PostMapping("/updateUser")
+	@PreAuthorize("hasRole('ADMIN')")
 	public User updateUserDetails(@RequestBody SignupRequest signUpRequest) {
 
 		User update = new User(signUpRequest.getUsername(),
