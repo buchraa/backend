@@ -211,7 +211,7 @@ public class AuthController {
 	}
 
 	@GetMapping("/user/{id}")
-	@PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<User> getUser(@PathVariable long id) {
 		try {
 		User user = userService.get(id);
@@ -225,7 +225,7 @@ public class AuthController {
 	}
 
 	@DeleteMapping("/user/{id}")
-	@PreAuthorize("hasRole('TRANSLATOR') or hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public void delete(@PathVariable long id) {
 		userService.delete(id);
 	}
